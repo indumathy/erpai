@@ -16,8 +16,8 @@ RAG, tool calling, MCP, agents).
 | Purchase orders | ✅ | ✅ |
 | Goods receipts | ✅ | ✅ |
 | Inventory / stock (warehouses, stock ledger, adjustments) | ✅ | ✅ |
-| Supplier invoices | planned | planned |
-| Three-way invoice reconciliation | planned | planned |
+| Supplier invoices | ✅ | ✅ (read-only) |
+| Three-way invoice matching | ✅ | ✅ |
 
 ## Tech stack
 
@@ -28,7 +28,7 @@ RAG, tool calling, MCP, agents).
 
 ## Getting started
 
-Prerequisites: JDK 21+, Node.js 20+, Docker.
+Prerequisites: JDK 22+, Node.js 20+, Docker.
 
 ```bash
 # 1. Database (PostgreSQL 17 on localhost:5433)
@@ -42,6 +42,9 @@ cd backend
 cd frontend
 npm install
 npm run dev
+
+# 4. Optional demo data (backend must be running)
+node scripts/seed-demo-data.mjs
 ```
 
 ## Tests

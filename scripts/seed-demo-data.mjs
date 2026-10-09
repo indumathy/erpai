@@ -44,13 +44,7 @@ const PRODUCTS = [
 
 // ---- seeding ----------------------------------------------------------------------------------
 
-async function main() {
-  const existing = await api('GET', '/suppliers')
-  if (existing.length > 0) {
-    console.log(`Found ${existing.length} supplier(s) already - database is not empty, nothing seeded.`)
-    return
-  }
-
+async function seedMasterDataAndOrders() {
   console.log('Creating warehouses...')
   const warehouses = await api('GET', '/warehouses')
   const main = warehouses.find((w) => w.code === 'MAIN')
@@ -132,6 +126,82 @@ async function main() {
   const stock = await api('GET', '/inventory/stock')
   console.log(`Done: ${SUPPLIERS.length} suppliers, ${PRODUCTS.length} products, 2 warehouses, ` +
     `${orders.length} purchase orders, ${stock.length} stock levels.`)
+}
+
+// ---- invoices: one or more per matching rule, plus clean ones --------------------------------
+
+async function seedInvoices() {
+  console.log('Creating supplier invoices...')
+  const suppliers = await api('GET', '/suppliers')
+  const supplierId = (number) => suppliers.find((s) => s.supplierNumber === number).id
+  const summaries = await api('GET', '/purchase-orders')
+  const poOf = async (supplierNumber, status) => {
+    const summary = summaries.find((o) => o.supplier.supplierNumber === supplierNumber && o.status === status)
+    if (!summary) throw new Error(`Demo PO ${supplierNumber}/${status} not found - reseed the database`)
+    return api('GET', `/purchase-orders/${summary.id}`)
+  }
+  const lineOf = (po, sku) => po.items.find((i) => i.sku === sku)
+
+  const invoice = (supplierNumber, invoiceNumber, invoiceDate, currency, po, items) =>
+    api('POST', '/invoices', {
+      supplierId: supplierId(supplierNumber), invoiceNumber, invoiceDate, currency,
+      purchaseOrderId: po?.id ?? null, items,
+    })
+  // Bill a PO line; overrides change what the supplier "printed".
+  const bill = (po, sku, quantity, overrides = {}) => {
+    const l = lineOf(po, sku)
+    return {
+      purchaseOrderItemId: l.id, description: l.description, quantity,
+      unitPrice: l.unitPrice, taxRate: l.taxRate, ...overrides,
+    }
+  }
+
+  const office = await poOf('SUP-1001', 'RECEIVED')
+  const electronics = await poOf('SUP-1002', 'CLOSED')
+  const packaging = await poOf('SUP-1003', 'PARTIALLY_RECEIVED')
+  const imports = await poOf('SUP-1004', 'APPROVED')
+
+  // Clean: everything delivered, billed at PO prices.
+  await invoice('SUP-1001', 'MB-2026-0815', daysAgo(24), 'EUR', office, [
+    bill(office, 'OFF-PAPER-A4', 50), bill(office, 'OFF-TONER-HP26X', 10), bill(office, 'OFF-PEN-BLUE', 5),
+  ])
+  // Clean: first truck of cartons.
+  await invoice('SUP-1003', 'ALV-R-30117', daysAgo(3), 'EUR', packaging, [bill(packaging, 'PKG-CARTON-M', 1200)])
+  // PRICE_MISMATCH: monitors billed 7 % above the PO price.
+  await invoice('SUP-1002', 'SE-RE-77821', daysAgo(12), 'EUR', electronics, [
+    bill(electronics, 'IT-MON-27', 10, { unitPrice: 298.53 }),
+  ])
+  // QUANTITY_MISMATCH: second carton invoice for goods that have not arrived yet.
+  await invoice('SUP-1003', 'ALV-R-30188', daysAgo(2), 'EUR', packaging, [bill(packaging, 'PKG-CARTON-M', 800)])
+  // TAX_MISMATCH: keyboards invoiced with 7 % instead of 19 % VAT.
+  await invoice('SUP-1002', 'SE-RE-77840', daysAgo(11), 'EUR', electronics, [
+    bill(electronics, 'IT-KB-DE', 20, { taxRate: 7 }),
+  ])
+  // UNMATCHED_LINE: pallets plus a freight charge that was never ordered.
+  await invoice('SUP-1003', 'ALV-R-30120', daysAgo(3), 'EUR', packaging, [
+    bill(packaging, 'PKG-PALLET-EUR', 40),
+    { purchaseOrderItemId: null, description: 'Freight / Fracht', quantity: 1, unitPrice: 85, taxRate: 19 },
+  ])
+  // CURRENCY_MISMATCH + QUANTITY_MISMATCH: USD order invoiced in EUR before anything shipped.
+  await invoice('SUP-1004', 'PC-INV-5521', daysAgo(1), 'EUR', imports, [
+    bill(imports, 'IT-CABLE-CAT6', 915), bill(imports, 'IT-MON-27', 25),
+  ])
+  // MISSING_PO + DUPLICATE_INVOICE: cleaning supplies without PO, sent twice.
+  const cleaner = { purchaseOrderItemId: null, description: 'All-purpose cleaner', quantity: 100, unitPrice: 3.4, taxRate: 19 }
+  await invoice('SUP-1005', 'WR-2026-114', daysAgo(5), 'EUR', null, [cleaner])
+  await invoice('SUP-1005', 'WR-2026-114', daysAgo(1), 'EUR', null, [cleaner])
+
+  const invoices = await api('GET', '/invoices')
+  const flagged = invoices.filter((i) => i.exceptionCount > 0).length
+  console.log(`Done: ${invoices.length} invoices, ${invoices.length - flagged} matched, ${flagged} with exceptions.`)
+}
+
+async function main() {
+  if ((await api('GET', '/suppliers')).length === 0) await seedMasterDataAndOrders()
+  else console.log('Suppliers exist - master data and purchase orders already seeded.')
+
+  if ((await api('GET', '/invoices')).length === 0) await seedInvoices()
+  else console.log('Invoices exist - nothing to do.')
 }
 
 main().catch((err) => {

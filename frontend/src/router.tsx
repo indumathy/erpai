@@ -5,6 +5,8 @@ import { NotFoundPage } from './layout/NotFoundPage'
 import { GoodsReceiptCreatePage } from './features/goods-receipts/GoodsReceiptCreatePage'
 import { GoodsReceiptDetailPage } from './features/goods-receipts/GoodsReceiptDetailPage'
 import { GoodsReceiptsPage } from './features/goods-receipts/GoodsReceiptsPage'
+import { InvoiceDetailPage } from './features/invoices/InvoiceDetailPage'
+import { InvoicesPage } from './features/invoices/InvoicesPage'
 import { StockMovementsPage } from './features/inventory/StockMovementsPage'
 import { StockPage } from './features/inventory/StockPage'
 import { WarehousesPage } from './features/inventory/WarehousesPage'
@@ -32,6 +34,8 @@ export const router = createBrowserRouter([
       { path: 'inventory/stock', Component: StockPage },
       { path: 'inventory/movements', Component: StockMovementsPage },
       { path: 'inventory/warehouses', Component: WarehousesPage },
+      { path: 'invoices', Component: InvoicesPage },
+      { path: 'invoices/:id', Component: InvoiceDetailPage },
       { path: '*', Component: NotFoundPage },
     ],
   },
