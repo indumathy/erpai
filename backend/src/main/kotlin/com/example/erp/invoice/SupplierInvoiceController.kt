@@ -25,4 +25,7 @@ class SupplierInvoiceController(private val service: SupplierInvoiceService) {
 
     @GetMapping
     fun list(): List<SupplierInvoiceSummaryResponse> = service.list()
+
+    @GetMapping("/{id}/match")
+    fun match(@PathVariable id: Long): MatchResultResponse = service.match(id)
 }

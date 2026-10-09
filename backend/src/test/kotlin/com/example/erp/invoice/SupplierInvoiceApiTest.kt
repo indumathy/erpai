@@ -152,4 +152,70 @@ class SupplierInvoiceApiTest(@Autowired private val mvc: MockMvc) {
         invoice(quantity = "0").andExpect { status { isBadRequest() } }
         invoice(currency = "eur").andExpect { status { isBadRequest() } }
     }
+
+    private fun createdId(result: org.springframework.test.web.servlet.ResultActionsDsl) =
+        idOf(result.andReturn().response.getHeader("Location"))
+
+    @Test
+    fun matchingInvoice_isMatched() {
+        val id = createdId(invoice())
+        mvc.get("/api/invoices/$id/match").andExpect {
+            status { isOk() }
+            jsonPath("$.matched") { value(true) }
+            jsonPath("$.exceptions.length()") { value(0) }
+        }
+        mvc.get("/api/invoices").andExpect { jsonPath("$[?(@.id == $id)].exceptionCount") { value(0) } }
+    }
+
+    @Test
+    fun priceAndTaxDeviation_areReported() {
+        val id = createdId(invoice(price = "45", tax = "7"))
+        mvc.get("/api/invoices/$id/match").andExpect {
+            jsonPath("$.matched") { value(false) }
+            jsonPath("$.exceptions[0].code") { value("PRICE_MISMATCH") }
+            jsonPath("$.exceptions[0].expected") { value("42") }
+            jsonPath("$.exceptions[0].actual") { value("45") }
+            jsonPath("$.exceptions[1].code") { value("TAX_MISMATCH") }
+        }
+        mvc.get("/api/invoices").andExpect { jsonPath("$[?(@.id == $id)].exceptionCount") { value(2) } }
+    }
+
+    @Test
+    fun quantityRule_countsOnlyEarlierInvoices() {
+        val first = createdId(invoice(number = "A", quantity = "60"))
+        val second = createdId(invoice(number = "B", quantity = "40"))
+        val third = createdId(invoice(number = "C", quantity = "1"))
+
+        mvc.get("/api/invoices/$first/match").andExpect { jsonPath("$.matched") { value(true) } }
+        mvc.get("/api/invoices/$second/match").andExpect { jsonPath("$.matched") { value(true) } }
+        mvc.get("/api/invoices/$third/match").andExpect {
+            jsonPath("$.exceptions[0].code") { value("QUANTITY_MISMATCH") }
+            jsonPath("$.exceptions[0].expected") { value("0") }
+        }
+    }
+
+    @Test
+    fun duplicateInvoiceNumber_isDetectedCaseAndSpaceInsensitive() {
+        val first = createdId(invoice(number = "SE-RE-1", quantity = "50"))
+        val second = createdId(invoice(number = " se-re-1 ", quantity = "50"))
+        for (id in listOf(first, second)) {
+            mvc.get("/api/invoices/$id/match").andExpect {
+                jsonPath("$.exceptions[0].code") { value("DUPLICATE_INVOICE") }
+                jsonPath("$.exceptions.length()") { value(1) }
+            }
+        }
+    }
+
+    @Test
+    fun invoiceWithoutPo_reportsMissingPo() {
+        val id = createdId(invoice(purchaseOrderId = null, lineRef = null))
+        mvc.get("/api/invoices/$id/match").andExpect {
+            jsonPath("$.exceptions[0].code") { value("MISSING_PO") }
+        }
+    }
+
+    @Test
+    fun matchOfUnknownInvoice_returns404() {
+        mvc.get("/api/invoices/999999/match").andExpect { status { isNotFound() } }
+    }
 }
