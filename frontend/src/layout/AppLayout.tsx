@@ -24,6 +24,10 @@ const navigation: { section: string; items: NavItem[] }[] = [
     ],
   },
   {
+    section: 'Accounts payable',
+    items: [{ label: 'Supplier invoices', to: '/invoices' }],
+  },
+  {
     section: 'Inventory',
     items: [
       { label: 'Stock', to: '/inventory/stock' },
