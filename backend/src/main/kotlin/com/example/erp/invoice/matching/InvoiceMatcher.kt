@@ -2,7 +2,6 @@ package com.example.erp.invoice.matching
 
 import com.example.erp.shared.money.sameValueAs
 import java.math.BigDecimal
-import java.math.RoundingMode
 
 /**
  * Deterministic three-way match: invoice vs purchase order vs goods receipts.
@@ -72,9 +71,9 @@ object InvoiceMatcher {
 
     private fun priceMismatch(line: InvoiceLineSnapshot, poLine: PurchaseOrderLineSnapshot): MatchException? {
         val poPrice = poLine.unitPrice
-        val mismatch = if (poPrice.signum() == 0) line.unitPrice.signum() != 0
-        else (line.unitPrice - poPrice).abs().multiply(BigDecimal(100))
-            .divide(poPrice, 6, RoundingMode.HALF_UP) > PRICE_TOLERANCE_PERCENT
+        // |invoice - PO| / PO * 100 > tolerance, cross-multiplied: exact (no rounded quotient) and
+        // safe for free goods - with PO price 0 only an invoice price of 0 passes.
+        val mismatch = (line.unitPrice - poPrice).abs().multiply(BigDecimal(100)) > PRICE_TOLERANCE_PERCENT.multiply(poPrice)
         if (!mismatch) return null
         return MatchException(
             MatchExceptionCode.PRICE_MISMATCH, line.lineNumber, poPrice.plain(), line.unitPrice.plain(),

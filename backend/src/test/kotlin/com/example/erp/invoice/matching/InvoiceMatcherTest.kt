@@ -132,6 +132,13 @@ class InvoiceMatcherTest {
     }
 
     @Test
+    fun price_justAboveTolerance_failsWithoutRoundingAway() {
+        // 1.0001 / 200.0199 = 0.50000025 % - rounding the quotient to 6 places would hide it
+        val po = po(poLine(unitPrice = "200.0199"))
+        assertThat(codes(input(invLine(unitPrice = "201.0200"), purchaseOrder = po))).containsExactly(PRICE_MISMATCH)
+    }
+
+    @Test
     fun price_belowTolerance_alsoFails() {
         val po = po(poLine(unitPrice = "100"))
         assertThat(codes(input(invLine(unitPrice = "99.49"), purchaseOrder = po))).containsExactly(PRICE_MISMATCH)

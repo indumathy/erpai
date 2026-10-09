@@ -3,6 +3,7 @@ package com.example.erp.invoice
 import com.example.erp.purchaseorder.PurchaseOrder
 import com.example.erp.purchaseorder.PurchaseOrderItem
 import com.example.erp.shared.error.requireRule
+import com.example.erp.shared.money.CurrencyCodes
 import com.example.erp.shared.money.DocumentTotals
 import com.example.erp.shared.money.MoneyRounding
 import com.example.erp.shared.money.TaxableLine
@@ -75,6 +76,7 @@ class SupplierInvoice(
 
     init {
         requireRule(lines.isNotEmpty()) { "An invoice needs at least one line" }
+        requireRule(CurrencyCodes.isValid(currency)) { "Unknown ISO 4217 currency: $currency" }
         requireRule(!invoiceDate.isAfter(LocalDate.now())) { "Invoice date $invoiceDate lies in the future" }
         if (purchaseOrder != null) {
             requireRule(purchaseOrder.supplier.id == supplier.id) {

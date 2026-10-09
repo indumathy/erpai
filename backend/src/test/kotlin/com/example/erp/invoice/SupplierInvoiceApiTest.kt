@@ -148,6 +148,11 @@ class SupplierInvoiceApiTest(@Autowired private val mvc: MockMvc) {
     }
 
     @Test
+    fun unknownCurrencyCode_returns422() {
+        invoice(currency = "XYZ").andExpect { status { isUnprocessableContent() } }
+    }
+
+    @Test
     fun invalidFields_return400() {
         invoice(quantity = "0").andExpect { status { isBadRequest() } }
         invoice(currency = "eur").andExpect { status { isBadRequest() } }
