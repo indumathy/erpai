@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: erpai-postgres
+    environment:
+      POSTGRES_DB: erpai
+      POSTGRES_USER: erpai
+      POSTGRES_PASSWORD: erpai
+    ports:
+      # Host port 5433: 5432 is already used by another local PostgreSQL
+      - "5433:5432"
+    volumes:
+      - erpai-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U erpai -d erpai"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  erpai-pgdata:

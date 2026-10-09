@@ -1,0 +1,7 @@
+# Local development: human-readable logs instead of JSON.
+logging:
+  structured:
+    format:
+      console: ""
+  level:
+    com.example.erp: DEBUG

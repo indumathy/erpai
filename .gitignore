@@ -1,0 +1,25 @@
+# Backend (Maven)
+backend/target/
+!backend/.mvn/wrapper/maven-wrapper.jar
+
+# Frontend (Node)
+node_modules/
+frontend/dist/
+*.local
+
+# IntelliJ / VS Code
+.idea/
+*.iml
+out/
+.vscode/*
+!.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+*.log
+
+# Secrets (API keys from M3 on)
+.env
+.env.*
