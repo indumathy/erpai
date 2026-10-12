@@ -1,1 +1,4 @@
-# local Python artefacts (.venv, caches) - Task 1
+.venv/
+__pycache__/
+.pytest_cache/
+dataset/.golden-*/

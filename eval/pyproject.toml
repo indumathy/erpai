@@ -1,1 +1,26 @@
-# uv project for the golden dataset generator (dependencies, pytest config) - Task 1
+[project]
+name = "erpai-eval"
+version = "0.1.0"
+description = "Golden dataset generator and evaluation data for erpai"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "pdfplumber>=0.11",
+    "pydantic>=2.9",
+    "reportlab>=4.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/golden"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
