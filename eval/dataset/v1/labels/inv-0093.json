@@ -1,0 +1,67 @@
+{
+  "id": "inv-0093",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "price_above_tolerance",
+  "group": "g-085",
+  "pdf": "invoices/inv-0093.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00017",
+    "invoice_date": "2026-05-01",
+    "currency": "GBP",
+    "po_number": "PO-000085",
+    "lines": [
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "100",
+        "unit_price": "26.64",
+        "tax_rate": "20",
+        "net_amount": "2664.00"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "4",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "872.00"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "120",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "837.60"
+      }
+    ],
+    "totals": {
+      "net": "4373.60",
+      "tax": "874.72",
+      "gross": "5248.32"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "24.9",
+      "actual": "26.64",
+      "message": "Line 1: unit price 26.64 differs from PO price 24.9 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 93,
+    "purchase_order_id": 85,
+    "line_po_item_ids": [
+      361,
+      362,
+      363
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "inv-0187",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "missing_po_duplicate",
+  "group": "g-171",
+  "pdf": "invoices/inv-0187.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0036",
+    "invoice_date": "2026-06-13",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Warnweste gelb",
+        "quantity": "120",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "393.60"
+      },
+      {
+        "description": "Zucker 1 kg",
+        "quantity": "20",
+        "unit_price": "1.58",
+        "tax_rate": "7",
+        "net_amount": "31.60"
+      },
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "10",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "84.60"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "4",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "1556.00"
+      },
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "24",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "152.64"
+      }
+    ],
+    "totals": {
+      "net": "2218.44",
+      "tax": "417.71",
+      "gross": "2636.15"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    },
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "188",
+      "message": "Invoice number RE-2026-0036 was already used by this supplier (invoice id 188)"
+    },
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice RE-2026-0036 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 187,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

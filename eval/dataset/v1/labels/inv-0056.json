@@ -1,0 +1,46 @@
+{
+  "id": "inv-0056",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "clean_partial_delivery",
+  "group": "g-056",
+  "pdf": "invoices/inv-0056.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000012",
+    "invoice_date": "2026-04-30",
+    "currency": "USD",
+    "po_number": "PO-000056",
+    "lines": [
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "7",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "39.34"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "180",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "694.80"
+      }
+    ],
+    "totals": {
+      "net": "734.14",
+      "tax": "0.00",
+      "gross": "734.14"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 56,
+    "purchase_order_id": 56,
+    "line_po_item_ids": [
+      284,
+      285
+    ]
+  }
+}

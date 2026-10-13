@@ -1,0 +1,51 @@
+{
+  "id": "inv-0084",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "partial_series_overbilling",
+  "group": "g-076",
+  "pdf": "invoices/inv-0084.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000017",
+    "invoice_date": "2026-06-02",
+    "currency": "USD",
+    "po_number": "PO-000076",
+    "lines": [
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "5",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "62.40"
+      }
+    ],
+    "totals": {
+      "net": "62.40",
+      "tax": "0.00",
+      "gross": "62.40"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "5",
+      "message": "Line 1: invoiced 5 but only 0 can be billed (received 100, already invoiced 100)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 84,
+    "purchase_order_id": 76,
+    "line_po_item_ids": [
+      330
+    ]
+  }
+}

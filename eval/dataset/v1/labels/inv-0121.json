@@ -1,0 +1,51 @@
+{
+  "id": "inv-0121",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "tax_rate_wrong",
+  "group": "g-113",
+  "pdf": "invoices/inv-0121.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0025",
+    "invoice_date": "2026-08-16",
+    "currency": "EUR",
+    "po_number": "PO-000113",
+    "lines": [
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "24",
+        "unit_price": "2.36",
+        "tax_rate": "7",
+        "net_amount": "56.64"
+      }
+    ],
+    "totals": {
+      "net": "56.64",
+      "tax": "3.96",
+      "gross": "60.60"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 1: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 121,
+    "purchase_order_id": 113,
+    "line_po_item_ids": [
+      443
+    ]
+  }
+}

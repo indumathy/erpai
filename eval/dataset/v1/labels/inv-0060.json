@@ -1,0 +1,38 @@
+{
+  "id": "inv-0060",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "clean_partial_delivery",
+  "group": "g-060",
+  "pdf": "invoices/inv-0060.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0012",
+    "invoice_date": "2026-05-20",
+    "currency": "EUR",
+    "po_number": "PO-000060",
+    "lines": [
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "6",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "14.16"
+      }
+    ],
+    "totals": {
+      "net": "14.16",
+      "tax": "2.69",
+      "gross": "16.85"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 60,
+    "purchase_order_id": 60,
+    "line_po_item_ids": [
+      292
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "inv-0122",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "tax_rate_wrong",
+  "group": "g-114",
+  "pdf": "invoices/inv-0122.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000026",
+    "invoice_date": "2026-05-27",
+    "currency": "USD",
+    "po_number": "PO-000114",
+    "lines": [
+      {
+        "description": "Work gloves, size L",
+        "quantity": "250",
+        "unit_price": "3.86",
+        "tax_rate": "19",
+        "net_amount": "965.00"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "6",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "33.72"
+      },
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "6",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "774.00"
+      },
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "40",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "249.60"
+      }
+    ],
+    "totals": {
+      "net": "2022.32",
+      "tax": "183.35",
+      "gross": "2205.67"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "19",
+      "message": "Line 1: tax rate 19 % differs from PO tax rate 0 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 122,
+    "purchase_order_id": 114,
+    "line_po_item_ids": [
+      444,
+      445,
+      446,
+      447
+    ]
+  }
+}

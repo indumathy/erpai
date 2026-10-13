@@ -1,0 +1,75 @@
+{
+  "id": "inv-0127",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "tax_rate_wrong",
+  "group": "g-119",
+  "pdf": "invoices/inv-0127.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000027",
+    "invoice_date": "2026-03-24",
+    "currency": "USD",
+    "po_number": "PO-000119",
+    "lines": [
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "40",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "85.60"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "40",
+        "unit_price": "5.62",
+        "tax_rate": "19",
+        "net_amount": "224.80"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "80",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "998.40"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "2",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "7.72"
+      }
+    ],
+    "totals": {
+      "net": "1316.52",
+      "tax": "42.71",
+      "gross": "1359.23"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 2,
+      "expected": "0",
+      "actual": "19",
+      "message": "Line 2: tax rate 19 % differs from PO tax rate 0 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 127,
+    "purchase_order_id": 119,
+    "line_po_item_ids": [
+      461,
+      462,
+      463,
+      464
+    ]
+  }
+}

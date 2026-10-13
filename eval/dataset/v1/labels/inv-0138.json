@@ -1,0 +1,91 @@
+{
+  "id": "inv-0138",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "unmatched_freight",
+  "group": "g-130",
+  "pdf": "invoices/inv-0138.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0028",
+    "invoice_date": "2026-08-10",
+    "currency": "EUR",
+    "po_number": "PO-000130",
+    "lines": [
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "8",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "56.96"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "24",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "78.72"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "100",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "38900.00"
+      },
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "4",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "25.44"
+      },
+      {
+        "description": "Zucker 1 kg",
+        "quantity": "10",
+        "unit_price": "1.58",
+        "tax_rate": "7",
+        "net_amount": "15.80"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "38",
+        "tax_rate": "19",
+        "net_amount": "38.00"
+      }
+    ],
+    "totals": {
+      "net": "39114.92",
+      "tax": "7429.94",
+      "gross": "46544.86"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 6
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 6,
+      "expected": null,
+      "actual": null,
+      "message": "Line 6 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 138,
+    "purchase_order_id": 130,
+    "line_po_item_ids": [
+      495,
+      496,
+      497,
+      498,
+      499,
+      null
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "inv-0137",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "unmatched_freight",
+  "group": "g-129",
+  "pdf": "invoices/inv-0137.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00029",
+    "invoice_date": "2026-06-02",
+    "currency": "EUR",
+    "po_number": "PO-000129",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "200",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "1928.00"
+      },
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "120",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "897.60"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "45",
+        "tax_rate": "19",
+        "net_amount": "45.00"
+      }
+    ],
+    "totals": {
+      "net": "2870.60",
+      "tax": "437.70",
+      "gross": "3308.30"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 3,
+      "expected": null,
+      "actual": null,
+      "message": "Line 3 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 137,
+    "purchase_order_id": 129,
+    "line_po_item_ids": [
+      493,
+      494,
+      null
+    ]
+  }
+}

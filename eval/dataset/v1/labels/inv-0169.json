@@ -1,0 +1,51 @@
+{
+  "id": "inv-0169",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "missing_po",
+  "group": "g-155",
+  "pdf": "invoices/inv-0169.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00031",
+    "invoice_date": "2026-03-12",
+    "currency": "GBP",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Headset with microphone",
+        "quantity": "80",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "3198.40"
+      }
+    ],
+    "totals": {
+      "net": "3198.40",
+      "tax": "639.68",
+      "gross": "3838.08"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice TS/26/00031 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 169,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null
+    ]
+  }
+}

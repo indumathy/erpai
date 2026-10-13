@@ -1,0 +1,67 @@
+{
+  "id": "inv-0128",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "tax_rate_wrong",
+  "group": "g-120",
+  "pdf": "invoices/inv-0128.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00024",
+    "invoice_date": "2026-05-22",
+    "currency": "GBP",
+    "po_number": "PO-000120",
+    "lines": [
+      {
+        "description": "Wireless mouse",
+        "quantity": "40",
+        "unit_price": "14.36",
+        "tax_rate": "20",
+        "net_amount": "574.40"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "24",
+        "unit_price": "6.98",
+        "tax_rate": "5",
+        "net_amount": "167.52"
+      },
+      {
+        "description": "USB-C docking station",
+        "quantity": "80",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "9000.00"
+      }
+    ],
+    "totals": {
+      "net": "9741.92",
+      "tax": "1923.26",
+      "gross": "11665.18"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 2,
+      "expected": "20",
+      "actual": "5",
+      "message": "Line 2: tax rate 5 % differs from PO tax rate 20 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 128,
+    "purchase_order_id": 120,
+    "line_po_item_ids": [
+      465,
+      466,
+      467
+    ]
+  }
+}

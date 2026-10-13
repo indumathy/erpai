@@ -1,0 +1,46 @@
+{
+  "id": "inv-0037",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "clean_full",
+  "group": "g-037",
+  "pdf": "invoices/inv-0037.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000008",
+    "invoice_date": "2026-07-16",
+    "currency": "USD",
+    "po_number": "PO-000037",
+    "lines": [
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "120",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "674.40"
+      },
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "250",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "1560.00"
+      }
+    ],
+    "totals": {
+      "net": "2234.40",
+      "tax": "0.00",
+      "gross": "2234.40"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 37,
+    "purchase_order_id": 37,
+    "line_po_item_ids": [
+      188,
+      189
+    ]
+  }
+}

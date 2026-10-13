@@ -1,0 +1,51 @@
+{
+  "id": "inv-0099",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "price_above_tolerance",
+  "group": "g-091",
+  "pdf": "invoices/inv-0099.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00021",
+    "invoice_date": "2026-05-27",
+    "currency": "EUR",
+    "po_number": "PO-000091",
+    "lines": [
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "12",
+        "unit_price": "7.7",
+        "tax_rate": "7",
+        "net_amount": "92.40"
+      }
+    ],
+    "totals": {
+      "net": "92.40",
+      "tax": "6.47",
+      "gross": "98.87"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "7.48",
+      "actual": "7.7",
+      "message": "Line 1: unit price 7.7 differs from PO price 7.48 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 99,
+    "purchase_order_id": 91,
+    "line_po_item_ids": [
+      379
+    ]
+  }
+}

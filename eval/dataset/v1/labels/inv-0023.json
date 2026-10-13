@@ -1,0 +1,46 @@
+{
+  "id": "inv-0023",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "clean_full",
+  "group": "g-023",
+  "pdf": "invoices/inv-0023.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00005",
+    "invoice_date": "2026-07-23",
+    "currency": "GBP",
+    "po_number": "PO-000023",
+    "lines": [
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "8",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "199.20"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "4",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "872.00"
+      }
+    ],
+    "totals": {
+      "net": "1071.20",
+      "tax": "214.24",
+      "gross": "1285.44"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 23,
+    "purchase_order_id": 23,
+    "line_po_item_ids": [
+      116,
+      117
+    ]
+  }
+}

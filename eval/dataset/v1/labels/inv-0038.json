@@ -1,0 +1,70 @@
+{
+  "id": "inv-0038",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "clean_full",
+  "group": "g-038",
+  "pdf": "invoices/inv-0038.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00008",
+    "invoice_date": "2026-02-09",
+    "currency": "GBP",
+    "po_number": "PO-000038",
+    "lines": [
+      {
+        "description": "Headset with microphone",
+        "quantity": "10",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "399.80"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "50",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "10900.00"
+      },
+      {
+        "description": "Wireless mouse",
+        "quantity": "80",
+        "unit_price": "14.36",
+        "tax_rate": "20",
+        "net_amount": "1148.80"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "20",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "498.00"
+      },
+      {
+        "description": "USB-C docking station",
+        "quantity": "50",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "5625.00"
+      }
+    ],
+    "totals": {
+      "net": "18571.60",
+      "tax": "3714.32",
+      "gross": "22285.92"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 38,
+    "purchase_order_id": 38,
+    "line_po_item_ids": [
+      190,
+      191,
+      192,
+      193,
+      194
+    ]
+  }
+}

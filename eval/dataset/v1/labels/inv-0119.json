@@ -1,0 +1,51 @@
+{
+  "id": "inv-0119",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "tax_rate_wrong",
+  "group": "g-111",
+  "pdf": "invoices/inv-0119.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00025",
+    "invoice_date": "2026-06-13",
+    "currency": "EUR",
+    "po_number": "PO-000111",
+    "lines": [
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "40",
+        "unit_price": "7.48",
+        "tax_rate": "19",
+        "net_amount": "299.20"
+      }
+    ],
+    "totals": {
+      "net": "299.20",
+      "tax": "56.85",
+      "gross": "356.05"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "7",
+      "actual": "19",
+      "message": "Line 1: tax rate 19 % differs from PO tax rate 7 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 119,
+    "purchase_order_id": 111,
+    "line_po_item_ids": [
+      440
+    ]
+  }
+}

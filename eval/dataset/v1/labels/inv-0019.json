@@ -1,0 +1,46 @@
+{
+  "id": "inv-0019",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "clean_full",
+  "group": "g-019",
+  "pdf": "invoices/inv-0019.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00004",
+    "invoice_date": "2026-06-08",
+    "currency": "EUR",
+    "po_number": "PO-000019",
+    "lines": [
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "250",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "4565.00"
+      },
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "20",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "284.00"
+      }
+    ],
+    "totals": {
+      "net": "4849.00",
+      "tax": "373.51",
+      "gross": "5222.51"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 19,
+    "purchase_order_id": 19,
+    "line_po_item_ids": [
+      96,
+      97
+    ]
+  }
+}

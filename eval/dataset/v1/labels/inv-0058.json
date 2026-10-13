@@ -1,0 +1,46 @@
+{
+  "id": "inv-0058",
+  "split": "dev",
+  "template": "alpenpack_de",
+  "scenario": "clean_partial_delivery",
+  "group": "g-058",
+  "pdf": "invoices/inv-0058.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00012",
+    "invoice_date": "2026-03-20",
+    "currency": "EUR",
+    "po_number": "PO-000058",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "32",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "308.48"
+      },
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "125",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "1775.00"
+      }
+    ],
+    "totals": {
+      "net": "2083.48",
+      "tax": "395.86",
+      "gross": "2479.34"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 58,
+    "purchase_order_id": 58,
+    "line_po_item_ids": [
+      288,
+      289
+    ]
+  }
+}

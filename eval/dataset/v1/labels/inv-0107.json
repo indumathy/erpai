@@ -1,0 +1,59 @@
+{
+  "id": "inv-0107",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "quantity_not_received",
+  "group": "g-099",
+  "pdf": "invoices/inv-0107.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0022",
+    "invoice_date": "2026-08-23",
+    "currency": "EUR",
+    "po_number": "PO-000099",
+    "lines": [
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "40",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "3856.00"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "50",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "164.00"
+      }
+    ],
+    "totals": {
+      "net": "4020.00",
+      "tax": "763.80",
+      "gross": "4783.80"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "45",
+      "actual": "50",
+      "message": "Line 2: invoiced 50 but only 45 can be billed (received 45, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 107,
+    "purchase_order_id": 99,
+    "line_po_item_ids": [
+      401,
+      402
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "inv-0140",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "unmatched_freight",
+  "group": "g-132",
+  "pdf": "invoices/inv-0140.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000029",
+    "invoice_date": "2026-05-28",
+    "currency": "USD",
+    "po_number": "PO-000132",
+    "lines": [
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "120",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "748.80"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "60",
+        "tax_rate": "0",
+        "net_amount": "60.00"
+      }
+    ],
+    "totals": {
+      "net": "808.80",
+      "tax": "0.00",
+      "gross": "808.80"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 2,
+      "expected": null,
+      "actual": null,
+      "message": "Line 2 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 140,
+    "purchase_order_id": 132,
+    "line_po_item_ids": [
+      502,
+      null
+    ]
+  }
+}

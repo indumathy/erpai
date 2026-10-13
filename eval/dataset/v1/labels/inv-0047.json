@@ -1,0 +1,38 @@
+{
+  "id": "inv-0047",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "clean_full",
+  "group": "g-047",
+  "pdf": "invoices/inv-0047.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000010",
+    "invoice_date": "2026-02-19",
+    "currency": "USD",
+    "po_number": "PO-000047",
+    "lines": [
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "20",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "124.80"
+      }
+    ],
+    "totals": {
+      "net": "124.80",
+      "tax": "0.00",
+      "gross": "124.80"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 47,
+    "purchase_order_id": 47,
+    "line_po_item_ids": [
+      245
+    ]
+  }
+}

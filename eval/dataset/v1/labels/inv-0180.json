@@ -1,0 +1,78 @@
+{
+  "id": "inv-0180",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "price_and_tax",
+  "group": "g-166",
+  "pdf": "invoices/inv-0180.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0035",
+    "invoice_date": "2026-02-27",
+    "currency": "EUR",
+    "po_number": "PO-000156",
+    "lines": [
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "200",
+        "unit_price": "13.1",
+        "tax_rate": "7",
+        "net_amount": "2620.00"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "24",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "1317.60"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "4",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "13.12"
+      }
+    ],
+    "totals": {
+      "net": "3950.72",
+      "tax": "436.24",
+      "gross": "4386.96"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "12.84",
+      "actual": "13.1",
+      "message": "Line 1: unit price 13.1 differs from PO price 12.84 by more than 0.5 %"
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 1: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 180,
+    "purchase_order_id": 156,
+    "line_po_item_ids": [
+      582,
+      583,
+      584
+    ]
+  }
+}

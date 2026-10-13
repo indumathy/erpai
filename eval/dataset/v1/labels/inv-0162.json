@@ -1,0 +1,67 @@
+{
+  "id": "inv-0162",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "currency_mismatch",
+  "group": "g-148",
+  "pdf": "invoices/inv-0162.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0032",
+    "invoice_date": "2026-06-17",
+    "currency": "USD",
+    "po_number": "PO-000148",
+    "lines": [
+      {
+        "description": "Klebeband braun 50 mm",
+        "quantity": "80",
+        "unit_price": "1.98",
+        "tax_rate": "19",
+        "net_amount": "158.40"
+      },
+      {
+        "description": "Kaffee Bohnen 1 kg",
+        "quantity": "120",
+        "unit_price": "16.98",
+        "tax_rate": "7",
+        "net_amount": "2037.60"
+      },
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "250",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "2115.00"
+      }
+    ],
+    "totals": {
+      "net": "4311.00",
+      "tax": "574.58",
+      "gross": "4885.58"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000148 currency EUR"
+    }
+  ],
+  "erp": {
+    "invoice_id": 162,
+    "purchase_order_id": 148,
+    "line_po_item_ids": [
+      559,
+      560,
+      561
+    ]
+  }
+}

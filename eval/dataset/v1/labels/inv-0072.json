@@ -1,0 +1,46 @@
+{
+  "id": "inv-0072",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "price_at_tolerance",
+  "group": "g-072",
+  "pdf": "invoices/inv-0072.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00015",
+    "invoice_date": "2026-08-16",
+    "currency": "EUR",
+    "po_number": "PO-000072",
+    "lines": [
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "2",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "1.72"
+      },
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "24",
+        "unit_price": "1.4271",
+        "tax_rate": "19",
+        "net_amount": "34.25"
+      }
+    ],
+    "totals": {
+      "net": "35.97",
+      "tax": "6.83",
+      "gross": "42.80"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 72,
+    "purchase_order_id": 72,
+    "line_po_item_ids": [
+      325,
+      326
+    ]
+  }
+}

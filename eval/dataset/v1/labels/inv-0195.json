@@ -1,0 +1,78 @@
+{
+  "id": "inv-0195",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "currency_and_quantity",
+  "group": "g-178",
+  "pdf": "invoices/inv-0195.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0038",
+    "invoice_date": "2026-03-11",
+    "currency": "USD",
+    "po_number": "PO-000165",
+    "lines": [
+      {
+        "description": "Klebeband braun 50 mm",
+        "quantity": "12",
+        "unit_price": "1.98",
+        "tax_rate": "19",
+        "net_amount": "23.76"
+      },
+      {
+        "description": "Mineralwasser 12 x 1 l",
+        "quantity": "250",
+        "unit_price": "5.94",
+        "tax_rate": "7",
+        "net_amount": "1485.00"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "4",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "219.60"
+      }
+    ],
+    "totals": {
+      "net": "1728.36",
+      "tax": "150.19",
+      "gross": "1878.55"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000165 currency EUR"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "7",
+      "actual": "12",
+      "message": "Line 1: invoiced 12 but only 7 can be billed (received 7, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 195,
+    "purchase_order_id": 165,
+    "line_po_item_ids": [
+      604,
+      605,
+      606
+    ]
+  }
+}

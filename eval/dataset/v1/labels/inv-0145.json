@@ -1,0 +1,67 @@
+{
+  "id": "inv-0145",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "duplicate_pair",
+  "group": "g-137",
+  "pdf": "invoices/inv-0145.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00031",
+    "invoice_date": "2026-08-16",
+    "currency": "EUR",
+    "po_number": "PO-000137",
+    "lines": [
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "3",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "22.44"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "10",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "8.60"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "1",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "9.64"
+      }
+    ],
+    "totals": {
+      "net": "40.68",
+      "tax": "5.04",
+      "gross": "45.72"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "146",
+      "message": "Invoice number AP-R-00031 was already used by this supplier (invoice id 146)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 145,
+    "purchase_order_id": 137,
+    "line_po_item_ids": [
+      517,
+      518,
+      519
+    ]
+  }
+}

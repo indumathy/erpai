@@ -1,0 +1,38 @@
+{
+  "id": "inv-0062",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "price_at_tolerance",
+  "group": "g-062",
+  "pdf": "invoices/inv-0062.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00013",
+    "invoice_date": "2026-07-26",
+    "currency": "EUR",
+    "po_number": "PO-000062",
+    "lines": [
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "24",
+        "unit_price": "14.129",
+        "tax_rate": "19",
+        "net_amount": "339.10"
+      }
+    ],
+    "totals": {
+      "net": "339.10",
+      "tax": "64.43",
+      "gross": "403.53"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 62,
+    "purchase_order_id": 62,
+    "line_po_item_ids": [
+      297
+    ]
+  }
+}

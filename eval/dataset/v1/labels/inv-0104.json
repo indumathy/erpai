@@ -1,0 +1,59 @@
+{
+  "id": "inv-0104",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "quantity_not_received",
+  "group": "g-096",
+  "pdf": "invoices/inv-0104.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000022",
+    "invoice_date": "2026-06-13",
+    "currency": "USD",
+    "po_number": "PO-000096",
+    "lines": [
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "50",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "6450.00"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "6",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "33.72"
+      }
+    ],
+    "totals": {
+      "net": "6483.72",
+      "tax": "0.00",
+      "gross": "6483.72"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "4",
+      "actual": "6",
+      "message": "Line 2: invoiced 6 but only 4 can be billed (received 4, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 104,
+    "purchase_order_id": 96,
+    "line_po_item_ids": [
+      394,
+      395
+    ]
+  }
+}

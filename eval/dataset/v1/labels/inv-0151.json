@@ -1,0 +1,67 @@
+{
+  "id": "inv-0151",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "duplicate_pair",
+  "group": "g-140",
+  "pdf": "invoices/inv-0151.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000030",
+    "invoice_date": "2026-01-28",
+    "currency": "USD",
+    "po_number": "PO-000140",
+    "lines": [
+      {
+        "description": "Work gloves, size L",
+        "quantity": "40",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "154.40"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "1",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "12.48"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "12",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "67.44"
+      }
+    ],
+    "totals": {
+      "net": "234.32",
+      "tax": "0.00",
+      "gross": "234.32"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "152",
+      "message": "Invoice number INV-000030 was already used by this supplier (invoice id 152)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 151,
+    "purchase_order_id": 140,
+    "line_po_item_ids": [
+      527,
+      528,
+      529
+    ]
+  }
+}

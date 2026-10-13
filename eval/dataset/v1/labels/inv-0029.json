@@ -1,0 +1,46 @@
+{
+  "id": "inv-0029",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "clean_full",
+  "group": "g-029",
+  "pdf": "invoices/inv-0029.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00006",
+    "invoice_date": "2026-03-06",
+    "currency": "EUR",
+    "po_number": "PO-000029",
+    "lines": [
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "20",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "17.20"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "250",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "2410.00"
+      }
+    ],
+    "totals": {
+      "net": "2427.20",
+      "tax": "461.17",
+      "gross": "2888.37"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 29,
+    "purchase_order_id": 29,
+    "line_po_item_ids": [
+      142,
+      143
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "inv-0004",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "clean_full",
+  "group": "g-004",
+  "pdf": "invoices/inv-0004.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00001",
+    "invoice_date": "2026-03-27",
+    "currency": "EUR",
+    "po_number": "PO-000004",
+    "lines": [
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "250",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "355.00"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "50",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "482.00"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "6",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "5.16"
+      },
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "4",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "29.92"
+      }
+    ],
+    "totals": {
+      "net": "872.08",
+      "tax": "162.10",
+      "gross": "1034.18"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 4,
+    "purchase_order_id": 4,
+    "line_po_item_ids": [
+      9,
+      10,
+      11,
+      12
+    ]
+  }
+}

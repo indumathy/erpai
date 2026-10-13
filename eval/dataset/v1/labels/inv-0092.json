@@ -1,0 +1,75 @@
+{
+  "id": "inv-0092",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "price_above_tolerance",
+  "group": "g-084",
+  "pdf": "invoices/inv-0092.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000019",
+    "invoice_date": "2026-07-19",
+    "currency": "USD",
+    "po_number": "PO-000084",
+    "lines": [
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "200",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "25800.00"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "50",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "281.00"
+      },
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "24",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "51.36"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "12",
+        "unit_price": "12.6",
+        "tax_rate": "0",
+        "net_amount": "151.20"
+      }
+    ],
+    "totals": {
+      "net": "26283.56",
+      "tax": "0.00",
+      "gross": "26283.56"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 4
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 4,
+      "expected": "12.48",
+      "actual": "12.6",
+      "message": "Line 4: unit price 12.6 differs from PO price 12.48 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 92,
+    "purchase_order_id": 84,
+    "line_po_item_ids": [
+      357,
+      358,
+      359,
+      360
+    ]
+  }
+}

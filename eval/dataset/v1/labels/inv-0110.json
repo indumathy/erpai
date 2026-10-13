@@ -1,0 +1,51 @@
+{
+  "id": "inv-0110",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "quantity_not_received",
+  "group": "g-102",
+  "pdf": "invoices/inv-0110.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00020",
+    "invoice_date": "2026-01-29",
+    "currency": "GBP",
+    "po_number": "PO-000102",
+    "lines": [
+      {
+        "description": "Headset with microphone",
+        "quantity": "12",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "479.76"
+      }
+    ],
+    "totals": {
+      "net": "479.76",
+      "tax": "95.95",
+      "gross": "575.71"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "6",
+      "actual": "12",
+      "message": "Line 1: invoiced 12 but only 6 can be billed (received 6, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 110,
+    "purchase_order_id": 102,
+    "line_po_item_ids": [
+      410
+    ]
+  }
+}

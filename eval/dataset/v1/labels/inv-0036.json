@@ -1,0 +1,62 @@
+{
+  "id": "inv-0036",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "clean_full",
+  "group": "g-036",
+  "pdf": "invoices/inv-0036.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0008",
+    "invoice_date": "2026-07-05",
+    "currency": "EUR",
+    "po_number": "PO-000036",
+    "lines": [
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "120",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "4788.00"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "8",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "18.88"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "80",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "99.20"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "20",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "1790.00"
+      }
+    ],
+    "totals": {
+      "net": "6696.08",
+      "tax": "697.70",
+      "gross": "7393.78"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 36,
+    "purchase_order_id": 36,
+    "line_po_item_ids": [
+      184,
+      185,
+      186,
+      187
+    ]
+  }
+}

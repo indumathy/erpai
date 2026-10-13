@@ -1,0 +1,51 @@
+{
+  "id": "inv-0168",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "missing_po",
+  "group": "g-154",
+  "pdf": "invoices/inv-0168.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000033",
+    "invoice_date": "2026-04-24",
+    "currency": "USD",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "50",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "6450.00"
+      }
+    ],
+    "totals": {
+      "net": "6450.00",
+      "tax": "0.00",
+      "gross": "6450.00"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice INV-000033 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 168,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null
+    ]
+  }
+}

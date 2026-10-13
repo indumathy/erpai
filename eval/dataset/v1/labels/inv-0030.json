@@ -1,0 +1,150 @@
+{
+  "id": "inv-0030",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "clean_full",
+  "group": "g-030",
+  "pdf": "invoices/inv-0030.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0006",
+    "invoice_date": "2026-02-12",
+    "currency": "EUR",
+    "po_number": "PO-000030",
+    "lines": [
+      {
+        "description": "Kantinen-Snackbox",
+        "quantity": "60",
+        "unit_price": "4.72",
+        "tax_rate": "7",
+        "net_amount": "283.20"
+      },
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "60",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "381.60"
+      },
+      {
+        "description": "Klebeband braun 50 mm",
+        "quantity": "100",
+        "unit_price": "1.98",
+        "tax_rate": "19",
+        "net_amount": "198.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "24",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "9336.00"
+      },
+      {
+        "description": "Zucker 1 kg",
+        "quantity": "12",
+        "unit_price": "1.58",
+        "tax_rate": "7",
+        "net_amount": "18.96"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "24",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "1317.60"
+      },
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "10",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "964.00"
+      },
+      {
+        "description": "Kaffee Bohnen 1 kg",
+        "quantity": "12",
+        "unit_price": "16.98",
+        "tax_rate": "7",
+        "net_amount": "203.76"
+      },
+      {
+        "description": "Mineralwasser 12 x 1 l",
+        "quantity": "8",
+        "unit_price": "5.94",
+        "tax_rate": "7",
+        "net_amount": "47.52"
+      },
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "100",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "41200.00"
+      },
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "40",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "338.40"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "40",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "284.80"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "20",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "256.80"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "100",
+        "unit_price": "32.6",
+        "tax_rate": "19",
+        "net_amount": "3260.00"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "2",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "296.00"
+      }
+    ],
+    "totals": {
+      "net": "58386.64",
+      "tax": "11027.05",
+      "gross": "69413.69"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 30,
+    "purchase_order_id": 30,
+    "line_po_item_ids": [
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158
+    ]
+  }
+}

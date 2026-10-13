@@ -1,0 +1,67 @@
+{
+  "id": "inv-0166",
+  "split": "dev",
+  "template": "alpenpack_de",
+  "scenario": "currency_mismatch",
+  "group": "g-152",
+  "pdf": "invoices/inv-0166.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00034",
+    "invoice_date": "2026-07-20",
+    "currency": "USD",
+    "po_number": "PO-000152",
+    "lines": [
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "200",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "284.00"
+      },
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "6",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "85.20"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "20",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "17.20"
+      }
+    ],
+    "totals": {
+      "net": "386.40",
+      "tax": "73.42",
+      "gross": "459.82"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000152 currency EUR"
+    }
+  ],
+  "erp": {
+    "invoice_id": 166,
+    "purchase_order_id": 152,
+    "line_po_item_ids": [
+      570,
+      571,
+      572
+    ]
+  }
+}

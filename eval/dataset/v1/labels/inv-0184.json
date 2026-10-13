@@ -1,0 +1,78 @@
+{
+  "id": "inv-0184",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "missing_po_duplicate",
+  "group": "g-169",
+  "pdf": "invoices/inv-0184.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00034",
+    "invoice_date": "2026-03-15",
+    "currency": "GBP",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "40",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "279.20"
+      },
+      {
+        "description": "Wireless mouse",
+        "quantity": "120",
+        "unit_price": "14.36",
+        "tax_rate": "20",
+        "net_amount": "1723.20"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "10",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "249.00"
+      }
+    ],
+    "totals": {
+      "net": "2251.40",
+      "tax": "450.28",
+      "gross": "2701.68"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    },
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "183",
+      "message": "Invoice number TS/26/00034 was already used by this supplier (invoice id 183)"
+    },
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice TS/26/00034 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 184,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null
+    ]
+  }
+}

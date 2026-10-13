@@ -1,0 +1,67 @@
+{
+  "id": "inv-0109",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "quantity_not_received",
+  "group": "g-101",
+  "pdf": "invoices/inv-0109.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000023",
+    "invoice_date": "2026-02-05",
+    "currency": "USD",
+    "po_number": "PO-000101",
+    "lines": [
+      {
+        "description": "Work gloves, size L",
+        "quantity": "8",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "30.88"
+      },
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "120",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "15480.00"
+      },
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "60",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "374.40"
+      }
+    ],
+    "totals": {
+      "net": "15885.28",
+      "tax": "0.00",
+      "gross": "15885.28"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "96",
+      "actual": "120",
+      "message": "Line 2: invoiced 120 but only 96 can be billed (received 96, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 109,
+    "purchase_order_id": 101,
+    "line_po_item_ids": [
+      407,
+      408,
+      409
+    ]
+  }
+}

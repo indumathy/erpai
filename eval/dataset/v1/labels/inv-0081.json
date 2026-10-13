@@ -1,0 +1,51 @@
+{
+  "id": "inv-0081",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "partial_series_overbilling",
+  "group": "g-075",
+  "pdf": "invoices/inv-0081.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0017",
+    "invoice_date": "2026-06-19",
+    "currency": "EUR",
+    "po_number": "PO-000075",
+    "lines": [
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "5",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "19.50"
+      }
+    ],
+    "totals": {
+      "net": "19.50",
+      "tax": "3.71",
+      "gross": "23.21"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "5",
+      "message": "Line 1: invoiced 5 but only 0 can be billed (received 100, already invoiced 100)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 81,
+    "purchase_order_id": 75,
+    "line_po_item_ids": [
+      329
+    ]
+  }
+}

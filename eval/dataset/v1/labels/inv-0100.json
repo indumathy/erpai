@@ -1,0 +1,75 @@
+{
+  "id": "inv-0100",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "price_above_tolerance",
+  "group": "g-092",
+  "pdf": "invoices/inv-0100.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0021",
+    "invoice_date": "2026-05-07",
+    "currency": "EUR",
+    "po_number": "PO-000092",
+    "lines": [
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "10",
+        "unit_price": "403.76",
+        "tax_rate": "19",
+        "net_amount": "4037.60"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "10",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "71.20"
+      },
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "250",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "2115.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "40",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "15560.00"
+      }
+    ],
+    "totals": {
+      "net": "21783.80",
+      "tax": "4138.92",
+      "gross": "25922.72"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "412",
+      "actual": "403.76",
+      "message": "Line 1: unit price 403.76 differs from PO price 412 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 100,
+    "purchase_order_id": 92,
+    "line_po_item_ids": [
+      380,
+      381,
+      382,
+      383
+    ]
+  }
+}

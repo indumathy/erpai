@@ -1,0 +1,67 @@
+{
+  "id": "inv-0159",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "currency_mismatch",
+  "group": "g-145",
+  "pdf": "invoices/inv-0159.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000031",
+    "invoice_date": "2026-05-29",
+    "currency": "EUR",
+    "po_number": "PO-000145",
+    "lines": [
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "10",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "56.20"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "6",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "23.16"
+      },
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "10",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "1290.00"
+      }
+    ],
+    "totals": {
+      "net": "1369.36",
+      "tax": "0.00",
+      "gross": "1369.36"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "USD",
+      "actual": "EUR",
+      "message": "Invoice currency EUR differs from PO-000145 currency USD"
+    }
+  ],
+  "erp": {
+    "invoice_id": 159,
+    "purchase_order_id": 145,
+    "line_po_item_ids": [
+      547,
+      548,
+      549
+    ]
+  }
+}

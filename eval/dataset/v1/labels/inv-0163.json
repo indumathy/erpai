@@ -1,0 +1,67 @@
+{
+  "id": "inv-0163",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "currency_mismatch",
+  "group": "g-149",
+  "pdf": "invoices/inv-0163.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0032",
+    "invoice_date": "2026-02-10",
+    "currency": "USD",
+    "po_number": "PO-000149",
+    "lines": [
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "40",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "156.00"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "100",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "124.00"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "4",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "9.44"
+      }
+    ],
+    "totals": {
+      "net": "289.44",
+      "tax": "54.99",
+      "gross": "344.43"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000149 currency EUR"
+    }
+  ],
+  "erp": {
+    "invoice_id": 163,
+    "purchase_order_id": 149,
+    "line_po_item_ids": [
+      562,
+      563,
+      564
+    ]
+  }
+}

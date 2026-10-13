@@ -1,0 +1,86 @@
+{
+  "id": "inv-0200",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "currency_and_quantity",
+  "group": "g-183",
+  "pdf": "invoices/inv-0200.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0039",
+    "invoice_date": "2026-06-13",
+    "currency": "USD",
+    "po_number": "PO-000170",
+    "lines": [
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "10",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "4120.00"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "250",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "3210.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "10",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "3890.00"
+      },
+      {
+        "description": "Zucker 1 kg",
+        "quantity": "12",
+        "unit_price": "1.58",
+        "tax_rate": "7",
+        "net_amount": "18.96"
+      }
+    ],
+    "totals": {
+      "net": "11238.96",
+      "tax": "2133.13",
+      "gross": "13372.09"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000170 currency EUR"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "7",
+      "actual": "10",
+      "message": "Line 1: invoiced 10 but only 7 can be billed (received 7, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 200,
+    "purchase_order_id": 170,
+    "line_po_item_ids": [
+      616,
+      617,
+      618,
+      619
+    ]
+  }
+}

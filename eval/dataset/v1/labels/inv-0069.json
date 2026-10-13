@@ -1,0 +1,62 @@
+{
+  "id": "inv-0069",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "price_at_tolerance",
+  "group": "g-069",
+  "pdf": "invoices/inv-0069.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0014",
+    "invoice_date": "2026-01-14",
+    "currency": "EUR",
+    "po_number": "PO-000069",
+    "lines": [
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "80",
+        "unit_price": "3.8805",
+        "tax_rate": "19",
+        "net_amount": "310.44"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "50",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "118.00"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "6",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "239.40"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "250",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "22375.00"
+      }
+    ],
+    "totals": {
+      "net": "23042.84",
+      "tax": "4349.41",
+      "gross": "27392.25"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 69,
+    "purchase_order_id": 69,
+    "line_po_item_ids": [
+      317,
+      318,
+      319,
+      320
+    ]
+  }
+}

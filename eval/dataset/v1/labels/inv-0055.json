@@ -1,0 +1,46 @@
+{
+  "id": "inv-0055",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "clean_partial_delivery",
+  "group": "g-055",
+  "pdf": "invoices/inv-0055.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0011",
+    "invoice_date": "2026-06-03",
+    "currency": "EUR",
+    "po_number": "PO-000055",
+    "lines": [
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "3",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "268.50"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "5",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "6.20"
+      }
+    ],
+    "totals": {
+      "net": "274.70",
+      "tax": "52.19",
+      "gross": "326.89"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 55,
+    "purchase_order_id": 55,
+    "line_po_item_ids": [
+      282,
+      283
+    ]
+  }
+}

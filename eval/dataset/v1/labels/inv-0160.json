@@ -1,0 +1,75 @@
+{
+  "id": "inv-0160",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "currency_mismatch",
+  "group": "g-146",
+  "pdf": "invoices/inv-0160.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00029",
+    "invoice_date": "2026-07-12",
+    "currency": "EUR",
+    "po_number": "PO-000146",
+    "lines": [
+      {
+        "description": "USB-C docking station",
+        "quantity": "50",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "5625.00"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "50",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "1245.00"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "24",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "167.52"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "10",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "2180.00"
+      }
+    ],
+    "totals": {
+      "net": "9217.52",
+      "tax": "1843.50",
+      "gross": "11061.02"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "GBP",
+      "actual": "EUR",
+      "message": "Invoice currency EUR differs from PO-000146 currency GBP"
+    }
+  ],
+  "erp": {
+    "invoice_id": 160,
+    "purchase_order_id": 146,
+    "line_po_item_ids": [
+      550,
+      551,
+      552,
+      553
+    ]
+  }
+}

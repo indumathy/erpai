@@ -1,0 +1,94 @@
+{
+  "id": "inv-0179",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "price_and_tax",
+  "group": "g-165",
+  "pdf": "invoices/inv-0179.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00037",
+    "invoice_date": "2026-07-16",
+    "currency": "EUR",
+    "po_number": "PO-000155",
+    "lines": [
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "8",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "6.88"
+      },
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "12",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "170.40"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "8",
+        "unit_price": "16.98",
+        "tax_rate": "19",
+        "net_amount": "135.84"
+      },
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "12",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "17.04"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "2",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "19.28"
+      }
+    ],
+    "totals": {
+      "net": "349.44",
+      "tax": "66.39",
+      "gross": "415.83"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 3
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 3,
+      "expected": "18.26",
+      "actual": "16.98",
+      "message": "Line 3: unit price 16.98 differs from PO price 18.26 by more than 0.5 %"
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 3,
+      "expected": "7",
+      "actual": "19",
+      "message": "Line 3: tax rate 19 % differs from PO tax rate 7 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 179,
+    "purchase_order_id": 155,
+    "line_po_item_ids": [
+      577,
+      578,
+      579,
+      580,
+      581
+    ]
+  }
+}

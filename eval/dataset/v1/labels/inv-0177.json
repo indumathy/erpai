@@ -1,0 +1,62 @@
+{
+  "id": "inv-0177",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "price_and_tax",
+  "group": "g-163",
+  "pdf": "invoices/inv-0177.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000035",
+    "invoice_date": "2026-08-20",
+    "currency": "USD",
+    "po_number": "PO-000153",
+    "lines": [
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "60",
+        "unit_price": "141.9",
+        "tax_rate": "19",
+        "net_amount": "8514.00"
+      }
+    ],
+    "totals": {
+      "net": "8514.00",
+      "tax": "1617.66",
+      "gross": "10131.66"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "129",
+      "actual": "141.9",
+      "message": "Line 1: unit price 141.9 differs from PO price 129 by more than 0.5 %"
+    },
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "19",
+      "message": "Line 1: tax rate 19 % differs from PO tax rate 0 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 177,
+    "purchase_order_id": 153,
+    "line_po_item_ids": [
+      573
+    ]
+  }
+}

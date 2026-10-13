@@ -1,0 +1,51 @@
+{
+  "id": "inv-0075",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "partial_series_overbilling",
+  "group": "g-073",
+  "pdf": "invoices/inv-0075.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00018",
+    "invoice_date": "2026-08-03",
+    "currency": "EUR",
+    "po_number": "PO-000073",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "1",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "9.64"
+      }
+    ],
+    "totals": {
+      "net": "9.64",
+      "tax": "1.83",
+      "gross": "11.47"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "1",
+      "message": "Line 1: invoiced 1 but only 0 can be billed (received 50, already invoiced 50)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 75,
+    "purchase_order_id": 73,
+    "line_po_item_ids": [
+      327
+    ]
+  }
+}

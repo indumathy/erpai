@@ -1,0 +1,46 @@
+{
+  "id": "inv-0059",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "clean_partial_delivery",
+  "group": "g-059",
+  "pdf": "invoices/inv-0059.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0012",
+    "invoice_date": "2026-07-08",
+    "currency": "EUR",
+    "po_number": "PO-000059",
+    "lines": [
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "50",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "20600.00"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "5",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "740.00"
+      }
+    ],
+    "totals": {
+      "net": "21340.00",
+      "tax": "4054.60",
+      "gross": "25394.60"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 59,
+    "purchase_order_id": 59,
+    "line_po_item_ids": [
+      290,
+      291
+    ]
+  }
+}

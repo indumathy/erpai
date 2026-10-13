@@ -1,0 +1,59 @@
+{
+  "id": "inv-0120",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "tax_rate_wrong",
+  "group": "g-112",
+  "pdf": "invoices/inv-0120.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0024",
+    "invoice_date": "2026-01-26",
+    "currency": "EUR",
+    "po_number": "PO-000112",
+    "lines": [
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "20",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "256.80"
+      },
+      {
+        "description": "Mineralwasser 12 x 1 l",
+        "quantity": "120",
+        "unit_price": "5.94",
+        "tax_rate": "19",
+        "net_amount": "712.80"
+      }
+    ],
+    "totals": {
+      "net": "969.60",
+      "tax": "184.22",
+      "gross": "1153.82"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 2,
+      "expected": "7",
+      "actual": "19",
+      "message": "Line 2: tax rate 19 % differs from PO tax rate 7 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 120,
+    "purchase_order_id": 112,
+    "line_po_item_ids": [
+      441,
+      442
+    ]
+  }
+}

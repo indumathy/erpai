@@ -1,0 +1,70 @@
+{
+  "id": "inv-0189",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "freight_and_price",
+  "group": "g-172",
+  "pdf": "invoices/inv-0189.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00039",
+    "invoice_date": "2026-04-20",
+    "currency": "EUR",
+    "po_number": "PO-000159",
+    "lines": [
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "10",
+        "unit_price": "17.89",
+        "tax_rate": "7",
+        "net_amount": "178.90"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "60",
+        "tax_rate": "19",
+        "net_amount": "60.00"
+      }
+    ],
+    "totals": {
+      "net": "238.90",
+      "tax": "23.92",
+      "gross": "262.82"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "18.26",
+      "actual": "17.89",
+      "message": "Line 1: unit price 17.89 differs from PO price 18.26 by more than 0.5 %"
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 2,
+      "expected": null,
+      "actual": null,
+      "message": "Line 2 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 189,
+    "purchase_order_id": 159,
+    "line_po_item_ids": [
+      588,
+      null
+    ]
+  }
+}

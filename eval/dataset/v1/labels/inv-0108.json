@@ -1,0 +1,75 @@
+{
+  "id": "inv-0108",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "quantity_not_received",
+  "group": "g-100",
+  "pdf": "invoices/inv-0108.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0023",
+    "invoice_date": "2026-07-14",
+    "currency": "EUR",
+    "po_number": "PO-000100",
+    "lines": [
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "24",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "2148.00"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "40",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "49.60"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "6",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "14.16"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "10",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "39.00"
+      }
+    ],
+    "totals": {
+      "net": "2250.76",
+      "tax": "427.64",
+      "gross": "2678.40"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "18",
+      "actual": "24",
+      "message": "Line 1: invoiced 24 but only 18 can be billed (received 18, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 108,
+    "purchase_order_id": 100,
+    "line_po_item_ids": [
+      403,
+      404,
+      405,
+      406
+    ]
+  }
+}

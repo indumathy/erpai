@@ -1,0 +1,59 @@
+{
+  "id": "inv-0147",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "duplicate_pair",
+  "group": "g-138",
+  "pdf": "invoices/inv-0147.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0030",
+    "invoice_date": "2026-05-03",
+    "currency": "EUR",
+    "po_number": "PO-000138",
+    "lines": [
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "20",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "1098.00"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "30",
+        "unit_price": "32.6",
+        "tax_rate": "19",
+        "net_amount": "978.00"
+      }
+    ],
+    "totals": {
+      "net": "2076.00",
+      "tax": "394.44",
+      "gross": "2470.44"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "148",
+      "message": "Invoice number RE-2026-0030 was already used by this supplier (invoice id 148)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 147,
+    "purchase_order_id": 138,
+    "line_po_item_ids": [
+      520,
+      521
+    ]
+  }
+}

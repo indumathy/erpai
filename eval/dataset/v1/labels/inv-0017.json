@@ -1,0 +1,70 @@
+{
+  "id": "inv-0017",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "clean_full",
+  "group": "g-017",
+  "pdf": "invoices/inv-0017.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000004",
+    "invoice_date": "2026-03-20",
+    "currency": "USD",
+    "po_number": "PO-000017",
+    "lines": [
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "120",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "674.40"
+      },
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "12",
+        "unit_price": "6.24",
+        "tax_rate": "0",
+        "net_amount": "74.88"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "60",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "231.60"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "100",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "1248.00"
+      },
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "250",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "535.00"
+      }
+    ],
+    "totals": {
+      "net": "2763.88",
+      "tax": "0.00",
+      "gross": "2763.88"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 17,
+    "purchase_order_id": 17,
+    "line_po_item_ids": [
+      88,
+      89,
+      90,
+      91,
+      92
+    ]
+  }
+}

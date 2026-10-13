@@ -1,0 +1,59 @@
+{
+  "id": "inv-0094",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "price_above_tolerance",
+  "group": "g-086",
+  "pdf": "invoices/inv-0094.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00020",
+    "invoice_date": "2026-06-08",
+    "currency": "EUR",
+    "po_number": "PO-000086",
+    "lines": [
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "12",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "89.76"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "24",
+        "unit_price": "9.45",
+        "tax_rate": "19",
+        "net_amount": "226.80"
+      }
+    ],
+    "totals": {
+      "net": "316.56",
+      "tax": "49.37",
+      "gross": "365.93"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 2,
+      "expected": "9.64",
+      "actual": "9.45",
+      "message": "Line 2: unit price 9.45 differs from PO price 9.64 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 94,
+    "purchase_order_id": 86,
+    "line_po_item_ids": [
+      364,
+      365
+    ]
+  }
+}

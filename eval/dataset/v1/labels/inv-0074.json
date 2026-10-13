@@ -1,0 +1,38 @@
+{
+  "id": "inv-0074",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "partial_series_overbilling",
+  "group": "g-073",
+  "pdf": "invoices/inv-0074.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00017",
+    "invoice_date": "2026-07-27",
+    "currency": "EUR",
+    "po_number": "PO-000073",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "20",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "192.80"
+      }
+    ],
+    "totals": {
+      "net": "192.80",
+      "tax": "36.63",
+      "gross": "229.43"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 74,
+    "purchase_order_id": 73,
+    "line_po_item_ids": [
+      327
+    ]
+  }
+}

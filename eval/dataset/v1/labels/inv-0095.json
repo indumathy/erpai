@@ -1,0 +1,83 @@
+{
+  "id": "inv-0095",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "price_above_tolerance",
+  "group": "g-087",
+  "pdf": "invoices/inv-0095.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0020",
+    "invoice_date": "2026-07-03",
+    "currency": "EUR",
+    "po_number": "PO-000087",
+    "lines": [
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "24",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "1317.60"
+      },
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "2",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "192.80"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "50",
+        "unit_price": "7.05",
+        "tax_rate": "19",
+        "net_amount": "352.50"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "250",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "820.00"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "20",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "256.80"
+      }
+    ],
+    "totals": {
+      "net": "2939.70",
+      "tax": "558.54",
+      "gross": "3498.24"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 3,
+      "expected": "7.12",
+      "actual": "7.05",
+      "message": "Line 3: unit price 7.05 differs from PO price 7.12 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 95,
+    "purchase_order_id": 87,
+    "line_po_item_ids": [
+      366,
+      367,
+      368,
+      369,
+      370
+    ]
+  }
+}

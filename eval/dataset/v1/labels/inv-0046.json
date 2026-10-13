@@ -1,0 +1,62 @@
+{
+  "id": "inv-0046",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "clean_full",
+  "group": "g-046",
+  "pdf": "invoices/inv-0046.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0010",
+    "invoice_date": "2026-03-06",
+    "currency": "EUR",
+    "po_number": "PO-000046",
+    "lines": [
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "6",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "7.44"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "50",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "195.00"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "8",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "18.88"
+      },
+      {
+        "description": "Kopierpapier A4, 500 Blatt",
+        "quantity": "100",
+        "unit_price": "4.18",
+        "tax_rate": "19",
+        "net_amount": "418.00"
+      }
+    ],
+    "totals": {
+      "net": "639.32",
+      "tax": "121.47",
+      "gross": "760.79"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 46,
+    "purchase_order_id": 46,
+    "line_po_item_ids": [
+      241,
+      242,
+      243,
+      244
+    ]
+  }
+}
