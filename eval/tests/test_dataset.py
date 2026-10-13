@@ -40,14 +40,33 @@ def manifest() -> Manifest:
 def test_intent_matches_erp(labels):
     """Check 1: for every invoice, intent and expected_exceptions name the same (code, line) pairs,
     in the same order. Report ALL mismatching invoices in the assertion message, not just the first."""
-    pytest.fail("M2 exercise E4: implement check 1")
+    mismatches = []
+    for label in labels:
+        # same shape on both sides: a list of (code, line) pairs; ExceptionCode is a StrEnum, so it equals the string
+        intended = [(i.code, i.line) for i in label.intent]
+        actual = [(e.code, e.lineNumber) for e in label.expected_exceptions]
+        if intended != actual:  # list equality also checks the ORDER (like Kotlin List ==)
+            mismatches.append((label.id, label.scenario, intended, actual))
+    assert not mismatches, "\n".join(map(str, mismatches))
 
 
 # CHECK 5 (E4, yours): no leakage between dev and test.
 def test_no_leakage_between_dev_and_test(labels, manifest):
     """Check 5: dev and test (from the manifest) are disjoint and together cover all label ids; each
     label's own `split` agrees with the manifest; all invoices of a group share one split; dev has 45-55."""
-    pytest.fail("M2 exercise E4: implement check 5")
+    dev, test = set(manifest.splits["dev"]), set(manifest.splits["test"])
+    assert not dev & test, f"in both splits: {sorted(dev & test)}"  # & = intersection (Kotlin: intersect)
+    assert dev | test == {label.id for label in labels}  # | = union: together they cover every invoice
+    # each label's own `split` field agrees with the manifest
+    disagree = [label.id for label in labels if label.split != ("dev" if label.id in dev else "test")]
+    assert not disagree, f"label split != manifest: {disagree}"
+    # all invoices of one group (e.g. both copies of a duplicate) share one split
+    splits_per_group = defaultdict(set)
+    for label in labels:
+        splits_per_group[label.group].add(label.split)
+    split_groups = sorted(g for g, s in splits_per_group.items() if len(s) > 1)
+    assert not split_groups, f"groups split across dev/test: {split_groups}"
+    assert 45 <= len(dev) <= 55, len(dev)
 
 
 # ---- prepared checks ------------------------------------------------------------------------
