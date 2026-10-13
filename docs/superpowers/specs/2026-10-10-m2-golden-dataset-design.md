@@ -35,21 +35,25 @@ Out of scope: scans/photos (M11), LLM calls (M3), random layouts, changes to the
 
 ```
 eval/
-  pyproject.toml          # uv project; deps: httpx, pydantic, reportlab, faker, pdfplumber; dev: pytest
+  pyproject.toml          # uv project; deps: httpx, pydantic, reportlab, pdfplumber; dev: pytest
   README.md               # how to regenerate and how to run the checks
   scripts/
-    golden-erp.sh         # recreate DB erpai_golden in the erpai-postgres container, start backend against it
+    golden-erp.sh         # recreate DB erpai_golden on the local PostgreSQL, start backend on :8081
   src/golden/
+    model.py              # plain frozen dataclasses: master data, ScenarioSpec, PrintedInvoice
+    suppliers.py          # fixed fictional master data: buyer, 5 suppliers, 40 products
+    money.py              # Decimal rounding identical to the ERP (MoneyRounding, DocumentTotals)
     erp_client.py         # thin httpx wrapper: suppliers, products, warehouses, POs, receipts, invoices, match
-    scenarios.py          # scenario catalog → ScenarioSpec list (with intent)              [user: E2]
-    labels.py             # Pydantic models for label JSON, manifest                         [user: E1]
-    split.py              # stratified dev/test assignment                                   [user: E3]
-    templates/            # one module per supplier template: render(invoice) -> bytes
+    scenarios.py          # building blocks, 15 scenario functions, catalog → ScenarioSpec list   [E2]
+    labels.py             # Pydantic models for label JSON, manifest                              [E1]
+    split.py              # stratified dev/test assignment                                        [E3]
+    templates/            # base.py renders; formats.py de/en numbers; one Style module per supplier
     generate.py           # orchestration; entry point `uv run python -m golden.generate`
     card.py               # writes dataset/v1/README.md (dataset card) from labels + manifest
   tests/
-    test_labels.py        # unit tests for labels.py validators
-    test_dataset.py       # checks over the finished dataset (see "Dataset checks")       [user: E4 = checks 1, 5]
+    test_money.py, test_suppliers.py, test_labels.py, test_erp_client.py, test_scenarios_base.py,
+    test_scenarios_exercise.py, test_catalog.py, test_templates.py, test_split.py, test_generate.py
+    test_dataset.py       # checks over the finished dataset (see "Dataset checks")             [E4 = checks 1, 5]
   dataset/v1/
     manifest.json
     README.md             # dataset card (generated)
@@ -59,19 +63,22 @@ eval/
 
 ## Generation run
 
-1. `eval/scripts/golden-erp.sh` drops and recreates database `erpai_golden` in the `erpai-postgres`
-   Docker container (port 5433) and starts the backend with
-   `SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/erpai_golden` (user/password `erpai`).
-   Flyway creates the schema. The backend's normal database is not touched.
+1. `eval/scripts/golden-erp.sh` (Git Bash) drops and recreates database `erpai_golden` on the local
+   PostgreSQL (port 5432, user/password `vacos`, as in `backend/application.yml`) and starts the backend
+   **on port 8081** with `SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/erpai_golden`.
+   Flyway creates the schema. The backend's normal database `erpai` is not touched. All connection
+   settings can be overridden with `GOLDEN_*` environment variables.
 2. `generate.py` checks `GET /api/invoices` is empty, otherwise aborts with a clear message.
-3. Master data: 5 suppliers (one per template, with currency), ~25 products, one warehouse.
+3. Master data: 5 suppliers (one per template, with currency), 40 products, the default warehouse `MAIN`.
 4. `scenarios.py` builds the ordered list of `ScenarioSpec`s from the seed. Each spec describes the PO,
    goods receipts and one or more invoices (series for partial invoicing, pairs for duplicates), the
    mutations applied to what the supplier "prints", and the intent.
-5. For each spec, in order: create PO → approve → goods receipt(s) → create invoice(s) →
-   `GET /match` per invoice. Order matters because "already invoiced" counts earlier invoices (lower id).
-6. Render each invoice's PDF with the spec's template from the same data that was posted.
-7. Write `labels/inv-NNNN.json`, then `split.py` assigns splits, then `manifest.json` and the dataset card.
+5. For each spec, in order: create PO → approve → goods receipt(s) → create invoice(s). Order matters
+   because "already invoiced" counts earlier invoices (lower id).
+6. Only after **all** invoices exist: `GET /invoices/{id}` and `GET /match` per invoice — the first copy
+   of a duplicate is flagged only once the second copy exists.
+7. Render each PDF from the ERP's stored invoice (not from the spec), so PDF and label cannot disagree.
+8. Build and validate the labels, assign splits, write PDFs, labels, `manifest.json` and the dataset card.
 
 Invoice IDs in the dataset (`inv-0001`…) are stable and independent of ERP database ids; ERP ids are
 kept only under `erp` for provenance.
@@ -84,7 +91,7 @@ kept only under `erp` for provenance.
   "split": "test",
   "template": "nordbuero_de",
   "scenario": "price_above_tolerance",
-  "group": null,
+  "group": "g-042",
   "pdf": "invoices/inv-0042.pdf",
   "fields": {
     "supplier_name": "Nordbüro GmbH",
@@ -110,7 +117,8 @@ kept only under `erp` for provenance.
   separator, no thousands separator, no currency symbols). `po_number` is `null` when not printed.
 - `intent` is ordered like the matcher's output (header first, then by line, then by code order).
 - `expected_exceptions` is copied verbatim from the ERP response (`[]` = matched).
-- `group` links invoices that must stay in the same split (duplicate pairs, partial-invoicing series).
+- `group` is always set: the scenario instance id; invoices of one group share a split (duplicate
+  pairs, partial-invoicing series).
 - `erp.line_po_item_ids[i]` is the PO line of invoice line `i+1`, or `null` (e.g. freight).
 
 `manifest.json`: `dataset_version`, `seed`, `generated_at`, `erp_commit` (git hash of the repo at
@@ -120,18 +128,20 @@ generation), `generator_version`, counts, and the list of ids per split.
 
 | Group | Count | Content |
 |---|---|---|
-| Clean | 80 | normal invoices; partial deliveries billed correctly; **near misses that must pass**: price exactly ±0.5 %, tax `19.00` vs `19`, quantity exactly equal to received |
+| Clean | 80 | normal invoices; partial deliveries billed exactly as received; the first two invoices of each partial-invoicing series; **near miss that must pass**: price exactly ±0.5 % (unrounded, e.g. 4.18 → 4.2009) |
 | Single exception | 96 | PRICE_MISMATCH 18 · QUANTITY_MISMATCH 18 · TAX_MISMATCH 14 · UNMATCHED_LINE 14 · DUPLICATE_INVOICE 12 · CURRENCY_MISMATCH 10 · MISSING_PO 10 |
 | Combinations | 24 | price + tax on one line; partial-invoicing series ending in over-billing; MISSING_PO + DUPLICATE_INVOICE; unmatched freight + price; currency + quantity |
 
-Every code appears in at least 3 of the 5 templates. Invoices have 1–8 lines; `bilingual` invoices with
->12 lines span two pages (~10 such invoices). Counts are invoices, so a duplicate pair contributes 2.
+Every code appears in at least 3 of the 5 templates. Invoices have 1–5 lines (6 with a freight line);
+the 10 `clean_full` invoices of `bilingual` have 13–16 lines and span two pages. Counts are invoices, so
+a duplicate pair contributes 2. Product prices are in even cents so that ±0.5 % stays exact with 4 decimals.
 
 ## Templates
 
-Each template is a module with `render(invoice: PrintedInvoice) -> bytes` using reportlab (pure
-Python, real text layer, no system dependencies). Supplier addresses and VAT IDs come from Faker with
-the dataset seed.
+Each template is a `Style` (labels, number/date format, layout switches); one shared
+`templates.render(invoice: PrintedInvoice) -> bytes` draws it with reportlab (pure Python, real text
+layer, no system dependencies, `invariant=1` for byte-identical output). Supplier addresses and VAT IDs
+are fixed fictional data in `suppliers.py` (no Faker).
 
 | Template | Language / formats | Extraction difficulty |
 |---|---|---|
@@ -161,11 +171,12 @@ the dataset seed.
 | E4 | `test_dataset.py` | checks 1 and 5 | validating labels before trusting them |
 
 Claude builds everything else, leaves all changes uncommitted, and suggests commit messages per step.
+In the build, the user chose to have Claude implement E1–E4 as well, each explained step by step.
 
 ## Error handling
 
 - ERP unreachable or not empty → abort before writing anything.
-- Any non-2xx ERP response → abort with the scenario id and response body; no partial dataset is
+- Any non-2xx ERP response → abort with method, path, status and response body; no partial dataset is
   written (generation writes to a temp directory and moves it to `dataset/v1/` only on success).
 - Intent ≠ ERP result is **not** a generation error (the run completes); it is reported by check 1 so
   all mismatches are visible at once.
@@ -175,6 +186,16 @@ Claude builds everything else, leaves all changes uncommitted, and suggests comm
 - Unit: `test_labels.py` (validators), small tests for number/date formatting per template.
 - Dataset: `test_dataset.py` checks 1–5 over `dataset/v1/`.
 - Manual: open one PDF per template and compare with its label.
+
+## Findings during the build
+
+- **Trailing zeros on the wire:** `4.18 × 1.005 = Decimal("4.20090")` keeps scale 5; the ERP's
+  `@Digits(fraction = 4)` rejected it although the value has 4 decimals. `erp_client` now sends the
+  shortest exact form (`money.plain`). Unit tests with a mocked ERP could not catch this — only the real run.
+- **Intent == ERP for all 200 invoices** on the first complete run; two independent runs from an empty
+  ERP produced byte-identical labels and PDFs.
+- `manifest.erp_commit` of v1 reads `<hash>-dirty`: the first generation replaced the tracked
+  `dataset/v1/.gitkeep`. Later regenerations write identical files and stay clean.
 
 ## Done when
 

@@ -18,11 +18,13 @@ RAG, tool calling, MCP, agents).
 | Inventory / stock (warehouses, stock ledger, adjustments) | ✅ | ✅ |
 | Supplier invoices | ✅ | ✅ (read-only) |
 | Three-way invoice matching | ✅ | ✅ |
+| Golden dataset (eval/, 200 labelled invoices) | ✅ | – |
 
 ## Tech stack
 
 - **Backend** (`backend/`): Kotlin, Spring Boot 4, Spring Data JPA, PostgreSQL, Flyway, Maven, JUnit 5, Testcontainers
 - **Frontend** (`frontend/`): React, TypeScript, Vite, Mantine, TanStack Query, React Router
+- **Eval** (`eval/`): Python 3.12, uv, pydantic, reportlab, pdfplumber, pytest — see [eval/README.md](eval/README.md)
 - **AI layer (planned)**: Python/FastAPI, Spring AI, document AI, pgvector, RAG, MCP, agents, evaluation —
   see [ROADMAP.md](ROADMAP.md)
 
@@ -52,6 +54,7 @@ node scripts/seed-demo-data.mjs
 ```bash
 cd backend && ./mvnw verify     # unit tests + integration tests (needs Docker for Testcontainers)
 cd frontend && npm run build    # type-check + production build
+cd eval && uv run pytest        # generator unit tests + golden dataset checks
 ```
 
 ## Project layout
@@ -59,5 +62,6 @@ cd frontend && npm run build    # type-check + production build
 ```
 backend/    Spring Boot modular monolith, package-by-feature (supplier/, product/, ...)
 frontend/   React SPA, folder-by-feature (features/suppliers, features/products, ...)
+eval/       golden dataset generator and dataset/v1 (Python, uv)
 docker-compose.yml
 ```
