@@ -1,0 +1,83 @@
+{
+  "id": "inv-0113",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "quantity_not_received",
+  "group": "g-105",
+  "pdf": "invoices/inv-0113.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0024",
+    "invoice_date": "2026-01-22",
+    "currency": "EUR",
+    "po_number": "PO-000105",
+    "lines": [
+      {
+        "description": "Kopierpapier A4, 500 Blatt",
+        "quantity": "4",
+        "unit_price": "4.18",
+        "tax_rate": "19",
+        "net_amount": "16.72"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "6",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "7.44"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "250",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "590.00"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "4",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "358.00"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "120",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "4788.00"
+      }
+    ],
+    "totals": {
+      "net": "5760.16",
+      "tax": "519.87",
+      "gross": "6280.03"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "3",
+      "actual": "6",
+      "message": "Line 2: invoiced 6 but only 3 can be billed (received 3, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 113,
+    "purchase_order_id": 105,
+    "line_po_item_ids": [
+      419,
+      420,
+      421,
+      422,
+      423
+    ]
+  }
+}

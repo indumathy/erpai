@@ -1,0 +1,62 @@
+{
+  "id": "inv-0198",
+  "split": "dev",
+  "template": "techsource_uk",
+  "scenario": "currency_and_quantity",
+  "group": "g-181",
+  "pdf": "invoices/inv-0198.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00036",
+    "invoice_date": "2026-02-02",
+    "currency": "EUR",
+    "po_number": "PO-000168",
+    "lines": [
+      {
+        "description": "Headset with microphone",
+        "quantity": "20",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "799.60"
+      }
+    ],
+    "totals": {
+      "net": "799.60",
+      "tax": "159.92",
+      "gross": "959.52"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "GBP",
+      "actual": "EUR",
+      "message": "Invoice currency EUR differs from PO-000168 currency GBP"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "15",
+      "actual": "20",
+      "message": "Line 1: invoiced 20 but only 15 can be billed (received 15, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 198,
+    "purchase_order_id": 168,
+    "line_po_item_ids": [
+      611
+    ]
+  }
+}

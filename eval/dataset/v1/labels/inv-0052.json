@@ -1,0 +1,46 @@
+{
+  "id": "inv-0052",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "clean_partial_delivery",
+  "group": "g-052",
+  "pdf": "invoices/inv-0052.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00011",
+    "invoice_date": "2026-04-03",
+    "currency": "GBP",
+    "po_number": "PO-000052",
+    "lines": [
+      {
+        "description": "USB-C docking station",
+        "quantity": "150",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "16875.00"
+      },
+      {
+        "description": "Headset with microphone",
+        "quantity": "10",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "399.80"
+      }
+    ],
+    "totals": {
+      "net": "17274.80",
+      "tax": "3454.96",
+      "gross": "20729.76"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 52,
+    "purchase_order_id": 52,
+    "line_po_item_ids": [
+      272,
+      273
+    ]
+  }
+}

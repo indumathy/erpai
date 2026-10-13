@@ -1,0 +1,83 @@
+{
+  "id": "inv-0130",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "tax_rate_wrong",
+  "group": "g-122",
+  "pdf": "invoices/inv-0130.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0026",
+    "invoice_date": "2026-08-08",
+    "currency": "EUR",
+    "po_number": "PO-000122",
+    "lines": [
+      {
+        "description": "Kaffee Bohnen 1 kg",
+        "quantity": "24",
+        "unit_price": "16.98",
+        "tax_rate": "7",
+        "net_amount": "407.52"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "50",
+        "unit_price": "32.6",
+        "tax_rate": "19",
+        "net_amount": "1630.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "200",
+        "unit_price": "389",
+        "tax_rate": "7",
+        "net_amount": "77800.00"
+      },
+      {
+        "description": "Mineralwasser 12 x 1 l",
+        "quantity": "4",
+        "unit_price": "5.94",
+        "tax_rate": "7",
+        "net_amount": "23.76"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "60",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "3294.00"
+      }
+    ],
+    "totals": {
+      "net": "83155.28",
+      "tax": "6411.75",
+      "gross": "89567.03"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 3,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 3: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 130,
+    "purchase_order_id": 122,
+    "line_po_item_ids": [
+      471,
+      472,
+      473,
+      474,
+      475
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "inv-0157",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "currency_mismatch",
+  "group": "g-143",
+  "pdf": "invoices/inv-0157.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0031",
+    "invoice_date": "2026-02-09",
+    "currency": "USD",
+    "po_number": "PO-000143",
+    "lines": [
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "2",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "16.92"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "250",
+        "unit_price": "32.6",
+        "tax_rate": "19",
+        "net_amount": "8150.00"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "12",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "154.08"
+      },
+      {
+        "description": "Kantinen-Snackbox",
+        "quantity": "8",
+        "unit_price": "4.72",
+        "tax_rate": "7",
+        "net_amount": "37.76"
+      },
+      {
+        "description": "Kaffee Bohnen 1 kg",
+        "quantity": "120",
+        "unit_price": "16.98",
+        "tax_rate": "7",
+        "net_amount": "2037.60"
+      }
+    ],
+    "totals": {
+      "net": "10396.36",
+      "tax": "1726.27",
+      "gross": "12122.63"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000143 currency EUR"
+    }
+  ],
+  "erp": {
+    "invoice_id": 157,
+    "purchase_order_id": 143,
+    "line_po_item_ids": [
+      539,
+      540,
+      541,
+      542,
+      543
+    ]
+  }
+}

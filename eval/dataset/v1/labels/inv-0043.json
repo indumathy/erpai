@@ -1,0 +1,46 @@
+{
+  "id": "inv-0043",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "clean_full",
+  "group": "g-043",
+  "pdf": "invoices/inv-0043.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00009",
+    "invoice_date": "2026-05-17",
+    "currency": "GBP",
+    "po_number": "PO-000043",
+    "lines": [
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "24",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "167.52"
+      },
+      {
+        "description": "Headset with microphone",
+        "quantity": "250",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "9995.00"
+      }
+    ],
+    "totals": {
+      "net": "10162.52",
+      "tax": "2032.50",
+      "gross": "12195.02"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 43,
+    "purchase_order_id": 43,
+    "line_po_item_ids": [
+      220,
+      221
+    ]
+  }
+}

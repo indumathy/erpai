@@ -1,0 +1,75 @@
+{
+  "id": "inv-0176",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "missing_po",
+  "group": "g-162",
+  "pdf": "invoices/inv-0176.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0034",
+    "invoice_date": "2026-06-04",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "120",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "763.20"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "4",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "51.36"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "20",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "142.40"
+      },
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "100",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "846.00"
+      }
+    ],
+    "totals": {
+      "net": "1802.96",
+      "tax": "342.56",
+      "gross": "2145.52"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice RE-2026-0034 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 176,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

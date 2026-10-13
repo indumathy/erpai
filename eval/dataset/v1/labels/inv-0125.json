@@ -1,0 +1,67 @@
+{
+  "id": "inv-0125",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "tax_rate_wrong",
+  "group": "g-117",
+  "pdf": "invoices/inv-0125.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0025",
+    "invoice_date": "2026-06-26",
+    "currency": "EUR",
+    "po_number": "PO-000117",
+    "lines": [
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "6",
+        "unit_price": "7.12",
+        "tax_rate": "7",
+        "net_amount": "42.72"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "8",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "1184.00"
+      },
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "10",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "964.00"
+      }
+    ],
+    "totals": {
+      "net": "2190.72",
+      "tax": "411.11",
+      "gross": "2601.83"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 1: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 125,
+    "purchase_order_id": 117,
+    "line_po_item_ids": [
+      455,
+      456,
+      457
+    ]
+  }
+}

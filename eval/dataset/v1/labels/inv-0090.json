@@ -1,0 +1,83 @@
+{
+  "id": "inv-0090",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "price_above_tolerance",
+  "group": "g-082",
+  "pdf": "invoices/inv-0090.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0019",
+    "invoice_date": "2026-07-30",
+    "currency": "EUR",
+    "po_number": "PO-000082",
+    "lines": [
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "120",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "49440.00"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "12",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "85.44"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "50",
+        "unit_price": "51.06",
+        "tax_rate": "19",
+        "net_amount": "2553.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "100",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "38900.00"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "24",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "308.16"
+      }
+    ],
+    "totals": {
+      "net": "91286.60",
+      "tax": "17344.45",
+      "gross": "108631.05"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 3,
+      "expected": "54.9",
+      "actual": "51.06",
+      "message": "Line 3: unit price 51.06 differs from PO price 54.9 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 90,
+    "purchase_order_id": 82,
+    "line_po_item_ids": [
+      347,
+      348,
+      349,
+      350,
+      351
+    ]
+  }
+}

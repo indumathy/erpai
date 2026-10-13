@@ -1,0 +1,54 @@
+{
+  "id": "inv-0002",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "clean_full",
+  "group": "g-002",
+  "pdf": "invoices/inv-0002.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000001",
+    "invoice_date": "2026-03-07",
+    "currency": "USD",
+    "po_number": "PO-000002",
+    "lines": [
+      {
+        "description": "Work gloves, size L",
+        "quantity": "100",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "386.00"
+      },
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "60",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "7740.00"
+      },
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "6",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "12.84"
+      }
+    ],
+    "totals": {
+      "net": "8138.84",
+      "tax": "0.00",
+      "gross": "8138.84"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 2,
+    "purchase_order_id": 2,
+    "line_po_item_ids": [
+      4,
+      5,
+      6
+    ]
+  }
+}

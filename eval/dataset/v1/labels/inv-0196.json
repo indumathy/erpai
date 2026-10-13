@@ -1,0 +1,70 @@
+{
+  "id": "inv-0196",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "currency_and_quantity",
+  "group": "g-179",
+  "pdf": "invoices/inv-0196.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0037",
+    "invoice_date": "2026-07-28",
+    "currency": "USD",
+    "po_number": "PO-000166",
+    "lines": [
+      {
+        "description": "Kopierpapier A4, 500 Blatt",
+        "quantity": "8",
+        "unit_price": "4.18",
+        "tax_rate": "19",
+        "net_amount": "33.44"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "200",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "17900.00"
+      }
+    ],
+    "totals": {
+      "net": "17933.44",
+      "tax": "3407.35",
+      "gross": "21340.79"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000166 currency EUR"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "6",
+      "actual": "8",
+      "message": "Line 1: invoiced 8 but only 6 can be billed (received 6, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 196,
+    "purchase_order_id": 166,
+    "line_po_item_ids": [
+      607,
+      608
+    ]
+  }
+}

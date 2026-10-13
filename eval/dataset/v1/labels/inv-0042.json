@@ -1,0 +1,46 @@
+{
+  "id": "inv-0042",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "clean_full",
+  "group": "g-042",
+  "pdf": "invoices/inv-0042.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000009",
+    "invoice_date": "2026-06-22",
+    "currency": "USD",
+    "po_number": "PO-000042",
+    "lines": [
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "60",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "128.40"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "100",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "1248.00"
+      }
+    ],
+    "totals": {
+      "net": "1376.40",
+      "tax": "0.00",
+      "gross": "1376.40"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 42,
+    "purchase_order_id": 42,
+    "line_po_item_ids": [
+      218,
+      219
+    ]
+  }
+}

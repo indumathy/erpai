@@ -1,0 +1,94 @@
+{
+  "id": "inv-0191",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "freight_and_price",
+  "group": "g-174",
+  "pdf": "invoices/inv-0191.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0036",
+    "invoice_date": "2026-03-12",
+    "currency": "EUR",
+    "po_number": "PO-000161",
+    "lines": [
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "2",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "179.00"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "250",
+        "unit_price": "1.12",
+        "tax_rate": "19",
+        "net_amount": "280.00"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "12",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "46.80"
+      },
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "250",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "590.00"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "45",
+        "tax_rate": "19",
+        "net_amount": "45.00"
+      }
+    ],
+    "totals": {
+      "net": "1140.80",
+      "tax": "216.75",
+      "gross": "1357.55"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 2
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 5
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 2,
+      "expected": "1.24",
+      "actual": "1.12",
+      "message": "Line 2: unit price 1.12 differs from PO price 1.24 by more than 0.5 %"
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 5,
+      "expected": null,
+      "actual": null,
+      "message": "Line 5 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 191,
+    "purchase_order_id": 161,
+    "line_po_item_ids": [
+      592,
+      593,
+      594,
+      595,
+      null
+    ]
+  }
+}

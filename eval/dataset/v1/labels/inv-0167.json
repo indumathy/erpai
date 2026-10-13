@@ -1,0 +1,75 @@
+{
+  "id": "inv-0167",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "missing_po",
+  "group": "g-153",
+  "pdf": "invoices/inv-0167.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0033",
+    "invoice_date": "2026-06-11",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "250",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "310.00"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "200",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "780.00"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "6",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "537.00"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "24",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "957.60"
+      }
+    ],
+    "totals": {
+      "net": "2584.60",
+      "tax": "376.16",
+      "gross": "2960.76"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice NB-2026-0033 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 167,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

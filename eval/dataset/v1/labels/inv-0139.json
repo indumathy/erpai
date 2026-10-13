@@ -1,0 +1,67 @@
+{
+  "id": "inv-0139",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "unmatched_freight",
+  "group": "g-131",
+  "pdf": "invoices/inv-0139.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0028",
+    "invoice_date": "2026-08-05",
+    "currency": "EUR",
+    "po_number": "PO-000131",
+    "lines": [
+      {
+        "description": "Kopierpapier A4, 500 Blatt",
+        "quantity": "100",
+        "unit_price": "4.18",
+        "tax_rate": "19",
+        "net_amount": "418.00"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "8",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "31.20"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "25",
+        "tax_rate": "19",
+        "net_amount": "25.00"
+      }
+    ],
+    "totals": {
+      "net": "474.20",
+      "tax": "90.10",
+      "gross": "564.30"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 3
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 3,
+      "expected": null,
+      "actual": null,
+      "message": "Line 3 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 139,
+    "purchase_order_id": 131,
+    "line_po_item_ids": [
+      500,
+      501,
+      null
+    ]
+  }
+}

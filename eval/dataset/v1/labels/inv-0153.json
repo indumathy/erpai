@@ -1,0 +1,75 @@
+{
+  "id": "inv-0153",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "duplicate_pair",
+  "group": "g-141",
+  "pdf": "invoices/inv-0153.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00028",
+    "invoice_date": "2026-03-11",
+    "currency": "GBP",
+    "po_number": "PO-000141",
+    "lines": [
+      {
+        "description": "USB-C docking station",
+        "quantity": "6",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "675.00"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "60",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "418.80"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "25",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "5450.00"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "3",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "74.70"
+      }
+    ],
+    "totals": {
+      "net": "6618.50",
+      "tax": "1323.70",
+      "gross": "7942.20"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "154",
+      "message": "Invoice number TS/26/00028 was already used by this supplier (invoice id 154)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 153,
+    "purchase_order_id": 141,
+    "line_po_item_ids": [
+      530,
+      531,
+      532,
+      533
+    ]
+  }
+}

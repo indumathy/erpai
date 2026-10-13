@@ -1,0 +1,91 @@
+{
+  "id": "inv-0136",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "unmatched_freight",
+  "group": "g-128",
+  "pdf": "invoices/inv-0136.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00026",
+    "invoice_date": "2026-06-11",
+    "currency": "GBP",
+    "po_number": "PO-000128",
+    "lines": [
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "4",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "872.00"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "2",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "13.96"
+      },
+      {
+        "description": "Headset with microphone",
+        "quantity": "8",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "319.84"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "100",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "2490.00"
+      },
+      {
+        "description": "USB-C docking station",
+        "quantity": "24",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "2700.00"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "45",
+        "tax_rate": "20",
+        "net_amount": "45.00"
+      }
+    ],
+    "totals": {
+      "net": "6440.80",
+      "tax": "1288.16",
+      "gross": "7728.96"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 6
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 6,
+      "expected": null,
+      "actual": null,
+      "message": "Line 6 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 136,
+    "purchase_order_id": 128,
+    "line_po_item_ids": [
+      488,
+      489,
+      490,
+      491,
+      492,
+      null
+    ]
+  }
+}

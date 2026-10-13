@@ -1,0 +1,54 @@
+{
+  "id": "inv-0024",
+  "split": "dev",
+  "template": "alpenpack_de",
+  "scenario": "clean_full",
+  "group": "g-024",
+  "pdf": "invoices/inv-0024.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00005",
+    "invoice_date": "2026-05-17",
+    "currency": "EUR",
+    "po_number": "PO-000024",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "100",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "964.00"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "24",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "438.24"
+      },
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "120",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "170.40"
+      }
+    ],
+    "totals": {
+      "net": "1572.64",
+      "tax": "246.22",
+      "gross": "1818.86"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 24,
+    "purchase_order_id": 24,
+    "line_po_item_ids": [
+      118,
+      119,
+      120
+    ]
+  }
+}

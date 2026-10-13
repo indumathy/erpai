@@ -1,0 +1,67 @@
+{
+  "id": "inv-0112",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "quantity_not_received",
+  "group": "g-104",
+  "pdf": "invoices/inv-0112.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0023",
+    "invoice_date": "2026-08-26",
+    "currency": "EUR",
+    "po_number": "PO-000104",
+    "lines": [
+      {
+        "description": "Etiketten 100x150 mm, 500 Stk.",
+        "quantity": "2",
+        "unit_price": "8.46",
+        "tax_rate": "19",
+        "net_amount": "16.92"
+      },
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "10",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "964.00"
+      },
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "250",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "103000.00"
+      }
+    ],
+    "totals": {
+      "net": "103980.92",
+      "tax": "19756.37",
+      "gross": "123737.29"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "6",
+      "actual": "10",
+      "message": "Line 2: invoiced 10 but only 6 can be billed (received 6, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 112,
+    "purchase_order_id": 104,
+    "line_po_item_ids": [
+      416,
+      417,
+      418
+    ]
+  }
+}

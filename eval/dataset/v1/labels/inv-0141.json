@@ -1,0 +1,83 @@
+{
+  "id": "inv-0141",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "unmatched_freight",
+  "group": "g-133",
+  "pdf": "invoices/inv-0141.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00027",
+    "invoice_date": "2026-07-08",
+    "currency": "GBP",
+    "po_number": "PO-000133",
+    "lines": [
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "120",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "837.60"
+      },
+      {
+        "description": "USB-C docking station",
+        "quantity": "12",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "1350.00"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "80",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "17440.00"
+      },
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "120",
+        "unit_price": "24.9",
+        "tax_rate": "20",
+        "net_amount": "2988.00"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "60",
+        "tax_rate": "20",
+        "net_amount": "60.00"
+      }
+    ],
+    "totals": {
+      "net": "22675.60",
+      "tax": "4535.12",
+      "gross": "27210.72"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 5
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 5,
+      "expected": null,
+      "actual": null,
+      "message": "Line 5 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 141,
+    "purchase_order_id": 133,
+    "line_po_item_ids": [
+      503,
+      504,
+      505,
+      506,
+      null
+    ]
+  }
+}

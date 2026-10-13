@@ -1,0 +1,59 @@
+{
+  "id": "inv-0097",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "price_above_tolerance",
+  "group": "g-089",
+  "pdf": "invoices/inv-0097.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000020",
+    "invoice_date": "2026-02-14",
+    "currency": "USD",
+    "po_number": "PO-000089",
+    "lines": [
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "10",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "1290.00"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "60",
+        "unit_price": "4.25",
+        "tax_rate": "0",
+        "net_amount": "255.00"
+      }
+    ],
+    "totals": {
+      "net": "1545.00",
+      "tax": "0.00",
+      "gross": "1545.00"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 2,
+      "expected": "3.86",
+      "actual": "4.25",
+      "message": "Line 2: unit price 4.25 differs from PO price 3.86 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 97,
+    "purchase_order_id": 89,
+    "line_po_item_ids": [
+      376,
+      377
+    ]
+  }
+}

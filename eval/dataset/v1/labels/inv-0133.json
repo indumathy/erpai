@@ -1,0 +1,91 @@
+{
+  "id": "inv-0133",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "unmatched_freight",
+  "group": "g-125",
+  "pdf": "invoices/inv-0133.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0027",
+    "invoice_date": "2026-03-18",
+    "currency": "EUR",
+    "po_number": "PO-000125",
+    "lines": [
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "250",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "3210.00"
+      },
+      {
+        "description": "Klebeband braun 50 mm",
+        "quantity": "24",
+        "unit_price": "1.98",
+        "tax_rate": "19",
+        "net_amount": "47.52"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "60",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "196.80"
+      },
+      {
+        "description": "Kantinen-Snackbox",
+        "quantity": "4",
+        "unit_price": "4.72",
+        "tax_rate": "7",
+        "net_amount": "18.88"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "40",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "5920.00"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "45",
+        "tax_rate": "19",
+        "net_amount": "45.00"
+      }
+    ],
+    "totals": {
+      "net": "9438.20",
+      "tax": "1790.99",
+      "gross": "11229.19"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 6
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 6,
+      "expected": null,
+      "actual": null,
+      "message": "Line 6 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 133,
+    "purchase_order_id": 125,
+    "line_po_item_ids": [
+      480,
+      481,
+      482,
+      483,
+      484,
+      null
+    ]
+  }
+}

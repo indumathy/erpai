@@ -1,0 +1,70 @@
+{
+  "id": "inv-0197",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "currency_and_quantity",
+  "group": "g-180",
+  "pdf": "invoices/inv-0197.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000038",
+    "invoice_date": "2026-03-28",
+    "currency": "EUR",
+    "po_number": "PO-000167",
+    "lines": [
+      {
+        "description": "Work gloves, size L",
+        "quantity": "120",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "463.20"
+      },
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "80",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "998.40"
+      }
+    ],
+    "totals": {
+      "net": "1461.60",
+      "tax": "0.00",
+      "gross": "1461.60"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "USD",
+      "actual": "EUR",
+      "message": "Invoice currency EUR differs from PO-000167 currency USD"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "40",
+      "actual": "80",
+      "message": "Line 2: invoiced 80 but only 40 can be billed (received 40, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 197,
+    "purchase_order_id": 167,
+    "line_po_item_ids": [
+      609,
+      610
+    ]
+  }
+}

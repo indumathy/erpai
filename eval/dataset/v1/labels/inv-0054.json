@@ -1,0 +1,70 @@
+{
+  "id": "inv-0054",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "clean_partial_delivery",
+  "group": "g-054",
+  "pdf": "invoices/inv-0054.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0011",
+    "invoice_date": "2026-04-27",
+    "currency": "EUR",
+    "po_number": "PO-000054",
+    "lines": [
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "3",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "1236.00"
+      },
+      {
+        "description": "Mineralwasser 12 x 1 l",
+        "quantity": "9",
+        "unit_price": "5.94",
+        "tax_rate": "7",
+        "net_amount": "53.46"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "48",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "7104.00"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "7",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "22.96"
+      },
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "48",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "305.28"
+      }
+    ],
+    "totals": {
+      "net": "8721.70",
+      "tax": "1650.71",
+      "gross": "10372.41"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 54,
+    "purchase_order_id": 54,
+    "line_po_item_ids": [
+      277,
+      278,
+      279,
+      280,
+      281
+    ]
+  }
+}

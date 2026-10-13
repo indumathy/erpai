@@ -1,0 +1,38 @@
+{
+  "id": "inv-0028",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "clean_full",
+  "group": "g-028",
+  "pdf": "invoices/inv-0028.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00006",
+    "invoice_date": "2026-06-30",
+    "currency": "GBP",
+    "po_number": "PO-000028",
+    "lines": [
+      {
+        "description": "Wireless mouse",
+        "quantity": "8",
+        "unit_price": "14.36",
+        "tax_rate": "20",
+        "net_amount": "114.88"
+      }
+    ],
+    "totals": {
+      "net": "114.88",
+      "tax": "22.98",
+      "gross": "137.86"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 28,
+    "purchase_order_id": 28,
+    "line_po_item_ids": [
+      141
+    ]
+  }
+}

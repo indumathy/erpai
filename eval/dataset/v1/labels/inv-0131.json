@@ -1,0 +1,75 @@
+{
+  "id": "inv-0131",
+  "split": "dev",
+  "template": "techsource_uk",
+  "scenario": "unmatched_freight",
+  "group": "g-123",
+  "pdf": "invoices/inv-0131.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00025",
+    "invoice_date": "2026-06-30",
+    "currency": "GBP",
+    "po_number": "PO-000123",
+    "lines": [
+      {
+        "description": "Headset with microphone",
+        "quantity": "10",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "399.80"
+      },
+      {
+        "description": "USB-C docking station",
+        "quantity": "2",
+        "unit_price": "112.5",
+        "tax_rate": "20",
+        "net_amount": "225.00"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "40",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "279.20"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "38",
+        "tax_rate": "20",
+        "net_amount": "38.00"
+      }
+    ],
+    "totals": {
+      "net": "942.00",
+      "tax": "188.40",
+      "gross": "1130.40"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 4
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 4,
+      "expected": null,
+      "actual": null,
+      "message": "Line 4 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 131,
+    "purchase_order_id": 123,
+    "line_po_item_ids": [
+      476,
+      477,
+      478,
+      null
+    ]
+  }
+}

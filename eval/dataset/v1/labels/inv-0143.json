@@ -1,0 +1,91 @@
+{
+  "id": "inv-0143",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "unmatched_freight",
+  "group": "g-135",
+  "pdf": "invoices/inv-0143.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0029",
+    "invoice_date": "2026-03-19",
+    "currency": "EUR",
+    "po_number": "PO-000135",
+    "lines": [
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "10",
+        "unit_price": "96.4",
+        "tax_rate": "19",
+        "net_amount": "964.00"
+      },
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "6",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "77.04"
+      },
+      {
+        "description": "Zucker 1 kg",
+        "quantity": "10",
+        "unit_price": "1.58",
+        "tax_rate": "7",
+        "net_amount": "15.80"
+      },
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "2",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "12.72"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "100",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "5490.00"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "45",
+        "tax_rate": "19",
+        "net_amount": "45.00"
+      }
+    ],
+    "totals": {
+      "net": "6604.56",
+      "tax": "1252.97",
+      "gross": "7857.53"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 6
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 6,
+      "expected": null,
+      "actual": null,
+      "message": "Line 6 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 143,
+    "purchase_order_id": 135,
+    "line_po_item_ids": [
+      508,
+      509,
+      510,
+      511,
+      512,
+      null
+    ]
+  }
+}

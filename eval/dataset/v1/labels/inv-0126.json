@@ -1,0 +1,67 @@
+{
+  "id": "inv-0126",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "tax_rate_wrong",
+  "group": "g-118",
+  "pdf": "invoices/inv-0126.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0026",
+    "invoice_date": "2026-05-15",
+    "currency": "EUR",
+    "po_number": "PO-000118",
+    "lines": [
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "2",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "179.00"
+      },
+      {
+        "description": "Kopierpapier A4, 500 Blatt",
+        "quantity": "24",
+        "unit_price": "4.18",
+        "tax_rate": "7",
+        "net_amount": "100.32"
+      },
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "100",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "124.00"
+      }
+    ],
+    "totals": {
+      "net": "403.32",
+      "tax": "64.59",
+      "gross": "467.91"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 2,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 2: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 126,
+    "purchase_order_id": 118,
+    "line_po_item_ids": [
+      458,
+      459,
+      460
+    ]
+  }
+}

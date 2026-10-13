@@ -1,0 +1,59 @@
+{
+  "id": "inv-0175",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "missing_po",
+  "group": "g-161",
+  "pdf": "invoices/inv-0175.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00036",
+    "invoice_date": "2026-06-22",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "100",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "86.00"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "50",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "913.00"
+      }
+    ],
+    "totals": {
+      "net": "999.00",
+      "tax": "80.25",
+      "gross": "1079.25"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice AP-R-00036 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 175,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "inv-0063",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "price_at_tolerance",
+  "group": "g-063",
+  "pdf": "invoices/inv-0063.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0013",
+    "invoice_date": "2026-04-18",
+    "currency": "EUR",
+    "po_number": "PO-000063",
+    "lines": [
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "40",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "284.80"
+      },
+      {
+        "description": "Warnweste gelb",
+        "quantity": "50",
+        "unit_price": "3.28",
+        "tax_rate": "19",
+        "net_amount": "164.00"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "200",
+        "unit_price": "32.763",
+        "tax_rate": "19",
+        "net_amount": "6552.60"
+      }
+    ],
+    "totals": {
+      "net": "7001.40",
+      "tax": "1330.27",
+      "gross": "8331.67"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 63,
+    "purchase_order_id": 63,
+    "line_po_item_ids": [
+      298,
+      299,
+      300
+    ]
+  }
+}

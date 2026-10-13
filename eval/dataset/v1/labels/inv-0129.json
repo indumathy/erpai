@@ -1,0 +1,67 @@
+{
+  "id": "inv-0129",
+  "split": "dev",
+  "template": "alpenpack_de",
+  "scenario": "tax_rate_wrong",
+  "group": "g-121",
+  "pdf": "invoices/inv-0129.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00027",
+    "invoice_date": "2026-05-02",
+    "currency": "EUR",
+    "po_number": "PO-000121",
+    "lines": [
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "250",
+        "unit_price": "14.2",
+        "tax_rate": "7",
+        "net_amount": "3550.00"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "200",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "3652.00"
+      },
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "2",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "2.84"
+      }
+    ],
+    "totals": {
+      "net": "7204.84",
+      "tax": "504.68",
+      "gross": "7709.52"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "19",
+      "actual": "7",
+      "message": "Line 1: tax rate 7 % differs from PO tax rate 19 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 129,
+    "purchase_order_id": 121,
+    "line_po_item_ids": [
+      468,
+      469,
+      470
+    ]
+  }
+}

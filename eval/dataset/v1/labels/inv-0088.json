@@ -1,0 +1,75 @@
+{
+  "id": "inv-0088",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "price_above_tolerance",
+  "group": "g-080",
+  "pdf": "invoices/inv-0088.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00016",
+    "invoice_date": "2026-05-29",
+    "currency": "GBP",
+    "po_number": "PO-000080",
+    "lines": [
+      {
+        "description": "Keyboard, UK layout",
+        "quantity": "10",
+        "unit_price": "23.66",
+        "tax_rate": "20",
+        "net_amount": "236.60"
+      },
+      {
+        "description": "27in monitor, QHD",
+        "quantity": "60",
+        "unit_price": "218",
+        "tax_rate": "20",
+        "net_amount": "13080.00"
+      },
+      {
+        "description": "Wireless mouse",
+        "quantity": "2",
+        "unit_price": "14.36",
+        "tax_rate": "20",
+        "net_amount": "28.72"
+      },
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "10",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "69.80"
+      }
+    ],
+    "totals": {
+      "net": "13415.12",
+      "tax": "2683.02",
+      "gross": "16098.14"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "24.9",
+      "actual": "23.66",
+      "message": "Line 1: unit price 23.66 differs from PO price 24.9 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 88,
+    "purchase_order_id": 80,
+    "line_po_item_ids": [
+      342,
+      343,
+      344,
+      345
+    ]
+  }
+}

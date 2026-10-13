@@ -1,0 +1,59 @@
+{
+  "id": "inv-0085",
+  "split": "dev",
+  "template": "bilingual",
+  "scenario": "price_above_tolerance",
+  "group": "g-077",
+  "pdf": "invoices/inv-0085.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0018",
+    "invoice_date": "2026-03-21",
+    "currency": "EUR",
+    "po_number": "PO-000077",
+    "lines": [
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "6",
+        "unit_price": "350.1",
+        "tax_rate": "19",
+        "net_amount": "2100.60"
+      },
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "40",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "16480.00"
+      }
+    ],
+    "totals": {
+      "net": "18580.60",
+      "tax": "3530.31",
+      "gross": "22110.91"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "389",
+      "actual": "350.1",
+      "message": "Line 1: unit price 350.1 differs from PO price 389 by more than 0.5 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 85,
+    "purchase_order_id": 77,
+    "line_po_item_ids": [
+      331,
+      332
+    ]
+  }
+}

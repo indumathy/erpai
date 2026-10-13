@@ -1,0 +1,67 @@
+{
+  "id": "inv-0158",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "currency_mismatch",
+  "group": "g-144",
+  "pdf": "invoices/inv-0158.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0031",
+    "invoice_date": "2026-08-05",
+    "currency": "USD",
+    "po_number": "PO-000144",
+    "lines": [
+      {
+        "description": "Ordner A4, 80 mm, blau",
+        "quantity": "12",
+        "unit_price": "2.36",
+        "tax_rate": "19",
+        "net_amount": "28.32"
+      },
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "250",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "975.00"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "8",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "319.20"
+      }
+    ],
+    "totals": {
+      "net": "1322.52",
+      "tax": "212.97",
+      "gross": "1535.49"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000144 currency EUR"
+    }
+  ],
+  "erp": {
+    "invoice_id": 158,
+    "purchase_order_id": 144,
+    "line_po_item_ids": [
+      544,
+      545,
+      546
+    ]
+  }
+}

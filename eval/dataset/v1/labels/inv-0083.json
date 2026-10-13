@@ -1,0 +1,38 @@
+{
+  "id": "inv-0083",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "partial_series_overbilling",
+  "group": "g-076",
+  "pdf": "invoices/inv-0083.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000016",
+    "invoice_date": "2026-05-26",
+    "currency": "USD",
+    "po_number": "PO-000076",
+    "lines": [
+      {
+        "description": "Hex bolt M8x40, box of 100",
+        "quantity": "40",
+        "unit_price": "12.48",
+        "tax_rate": "0",
+        "net_amount": "499.20"
+      }
+    ],
+    "totals": {
+      "net": "499.20",
+      "tax": "0.00",
+      "gross": "499.20"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 83,
+    "purchase_order_id": 76,
+    "line_po_item_ids": [
+      330
+    ]
+  }
+}

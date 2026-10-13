@@ -1,0 +1,59 @@
+{
+  "id": "inv-0132",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "unmatched_freight",
+  "group": "g-124",
+  "pdf": "invoices/inv-0132.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00028",
+    "invoice_date": "2026-04-13",
+    "currency": "EUR",
+    "po_number": "PO-000124",
+    "lines": [
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "20",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "28.40"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "85",
+        "tax_rate": "19",
+        "net_amount": "85.00"
+      }
+    ],
+    "totals": {
+      "net": "113.40",
+      "tax": "21.55",
+      "gross": "134.95"
+    }
+  },
+  "intent": [
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 2,
+      "expected": null,
+      "actual": null,
+      "message": "Line 2 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 132,
+    "purchase_order_id": 124,
+    "line_po_item_ids": [
+      479,
+      null
+    ]
+  }
+}

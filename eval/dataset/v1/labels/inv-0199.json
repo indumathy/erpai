@@ -1,0 +1,86 @@
+{
+  "id": "inv-0199",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "currency_and_quantity",
+  "group": "g-182",
+  "pdf": "invoices/inv-0199.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00041",
+    "invoice_date": "2026-08-02",
+    "currency": "USD",
+    "po_number": "PO-000169",
+    "lines": [
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "8",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "77.12"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "20",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "17.20"
+      },
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "40",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "299.20"
+      },
+      {
+        "description": "Faltkarton 600x400x400 mm",
+        "quantity": "4",
+        "unit_price": "1.42",
+        "tax_rate": "19",
+        "net_amount": "5.68"
+      }
+    ],
+    "totals": {
+      "net": "399.20",
+      "tax": "39.94",
+      "gross": "439.14"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 4
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "EUR",
+      "actual": "USD",
+      "message": "Invoice currency USD differs from PO-000169 currency EUR"
+    },
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 4,
+      "expected": "3",
+      "actual": "4",
+      "message": "Line 4: invoiced 4 but only 3 can be billed (received 3, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 199,
+    "purchase_order_id": 169,
+    "line_po_item_ids": [
+      612,
+      613,
+      614,
+      615
+    ]
+  }
+}

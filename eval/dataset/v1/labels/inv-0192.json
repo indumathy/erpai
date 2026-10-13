@@ -1,0 +1,102 @@
+{
+  "id": "inv-0192",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "freight_and_price",
+  "group": "g-175",
+  "pdf": "invoices/inv-0192.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000037",
+    "invoice_date": "2026-03-18",
+    "currency": "USD",
+    "po_number": "PO-000162",
+    "lines": [
+      {
+        "description": "Hex nut M8, box of 100",
+        "quantity": "6",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "33.72"
+      },
+      {
+        "description": "Cordless drill 18V",
+        "quantity": "24",
+        "unit_price": "129",
+        "tax_rate": "0",
+        "net_amount": "3096.00"
+      },
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "120",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "256.80"
+      },
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "80",
+        "unit_price": "5.62",
+        "tax_rate": "0",
+        "net_amount": "449.60"
+      },
+      {
+        "description": "Work gloves, size L",
+        "quantity": "4",
+        "unit_price": "3.86",
+        "tax_rate": "0",
+        "net_amount": "15.44"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "85",
+        "tax_rate": "0",
+        "net_amount": "85.00"
+      }
+    ],
+    "totals": {
+      "net": "3936.56",
+      "tax": "0.00",
+      "gross": "3936.56"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 1
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 6
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 1,
+      "expected": "6.24",
+      "actual": "5.62",
+      "message": "Line 1: unit price 5.62 differs from PO price 6.24 by more than 0.5 %"
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 6,
+      "expected": null,
+      "actual": null,
+      "message": "Line 6 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 192,
+    "purchase_order_id": 162,
+    "line_po_item_ids": [
+      596,
+      597,
+      598,
+      599,
+      600,
+      null
+    ]
+  }
+}

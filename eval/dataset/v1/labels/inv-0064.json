@@ -1,0 +1,46 @@
+{
+  "id": "inv-0064",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "price_at_tolerance",
+  "group": "g-064",
+  "pdf": "invoices/inv-0064.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0013",
+    "invoice_date": "2026-04-29",
+    "currency": "EUR",
+    "po_number": "PO-000064",
+    "lines": [
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "200",
+        "unit_price": "89.9475",
+        "tax_rate": "19",
+        "net_amount": "17989.50"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "6",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "239.40"
+      }
+    ],
+    "totals": {
+      "net": "18228.90",
+      "tax": "3434.77",
+      "gross": "21663.67"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 64,
+    "purchase_order_id": 64,
+    "line_po_item_ids": [
+      301,
+      302
+    ]
+  }
+}

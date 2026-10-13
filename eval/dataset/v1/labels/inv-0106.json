@@ -1,0 +1,75 @@
+{
+  "id": "inv-0106",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "quantity_not_received",
+  "group": "g-098",
+  "pdf": "invoices/inv-0106.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00022",
+    "invoice_date": "2026-03-26",
+    "currency": "EUR",
+    "po_number": "PO-000098",
+    "lines": [
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "2",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "28.40"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "120",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "2191.20"
+      },
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "8",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "59.84"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "8",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "6.88"
+      }
+    ],
+    "totals": {
+      "net": "2286.32",
+      "tax": "164.27",
+      "gross": "2450.59"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 2
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 2,
+      "expected": "96",
+      "actual": "120",
+      "message": "Line 2: invoiced 120 but only 96 can be billed (received 96, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 106,
+    "purchase_order_id": 98,
+    "line_po_item_ids": [
+      397,
+      398,
+      399,
+      400
+    ]
+  }
+}

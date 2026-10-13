@@ -1,0 +1,38 @@
+{
+  "id": "inv-0077",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "partial_series_overbilling",
+  "group": "g-074",
+  "pdf": "invoices/inv-0077.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0016",
+    "invoice_date": "2026-07-30",
+    "currency": "EUR",
+    "po_number": "PO-000074",
+    "lines": [
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "80",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "11840.00"
+      }
+    ],
+    "totals": {
+      "net": "11840.00",
+      "tax": "2249.60",
+      "gross": "14089.60"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 77,
+    "purchase_order_id": 74,
+    "line_po_item_ids": [
+      328
+    ]
+  }
+}

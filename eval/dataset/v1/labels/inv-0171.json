@@ -1,0 +1,67 @@
+{
+  "id": "inv-0171",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "missing_po",
+  "group": "g-157",
+  "pdf": "invoices/inv-0171.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0033",
+    "invoice_date": "2026-04-05",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Kunststoffbox 60 l",
+        "quantity": "80",
+        "unit_price": "12.84",
+        "tax_rate": "19",
+        "net_amount": "1027.20"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "12",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "1776.00"
+      },
+      {
+        "description": "Paletten-Etikettendrucker",
+        "quantity": "100",
+        "unit_price": "412",
+        "tax_rate": "19",
+        "net_amount": "41200.00"
+      }
+    ],
+    "totals": {
+      "net": "44003.20",
+      "tax": "8360.61",
+      "gross": "52363.81"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice RE-2026-0033 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 171,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null
+    ]
+  }
+}

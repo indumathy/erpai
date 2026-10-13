@@ -1,0 +1,51 @@
+{
+  "id": "inv-0164",
+  "split": "test",
+  "template": "acme_us",
+  "scenario": "currency_mismatch",
+  "group": "g-150",
+  "pdf": "invoices/inv-0164.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000032",
+    "invoice_date": "2026-03-18",
+    "currency": "EUR",
+    "po_number": "PO-000150",
+    "lines": [
+      {
+        "description": "Packing tape 48 mm x 66 m",
+        "quantity": "50",
+        "unit_price": "2.14",
+        "tax_rate": "0",
+        "net_amount": "107.00"
+      }
+    ],
+    "totals": {
+      "net": "107.00",
+      "tax": "0.00",
+      "gross": "107.00"
+    }
+  },
+  "intent": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "CURRENCY_MISMATCH",
+      "lineNumber": null,
+      "expected": "USD",
+      "actual": "EUR",
+      "message": "Invoice currency EUR differs from PO-000150 currency USD"
+    }
+  ],
+  "erp": {
+    "invoice_id": 164,
+    "purchase_order_id": 150,
+    "line_po_item_ids": [
+      565
+    ]
+  }
+}

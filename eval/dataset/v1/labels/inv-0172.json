@@ -1,0 +1,59 @@
+{
+  "id": "inv-0172",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "missing_po",
+  "group": "g-158",
+  "pdf": "invoices/inv-0172.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0034",
+    "invoice_date": "2026-07-02",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "200",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "7980.00"
+      },
+      {
+        "description": "Toner HP 26X schwarz",
+        "quantity": "60",
+        "unit_price": "89.5",
+        "tax_rate": "19",
+        "net_amount": "5370.00"
+      }
+    ],
+    "totals": {
+      "net": "13350.00",
+      "tax": "1578.90",
+      "gross": "14928.90"
+    }
+  },
+  "intent": [
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice NB-2026-0034 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 172,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null
+    ]
+  }
+}

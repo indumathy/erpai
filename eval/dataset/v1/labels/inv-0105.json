@@ -1,0 +1,51 @@
+{
+  "id": "inv-0105",
+  "split": "dev",
+  "template": "techsource_uk",
+  "scenario": "quantity_not_received",
+  "group": "g-097",
+  "pdf": "invoices/inv-0105.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00019",
+    "invoice_date": "2026-07-31",
+    "currency": "GBP",
+    "po_number": "PO-000097",
+    "lines": [
+      {
+        "description": "HDMI cable 2 m",
+        "quantity": "6",
+        "unit_price": "6.98",
+        "tax_rate": "20",
+        "net_amount": "41.88"
+      }
+    ],
+    "totals": {
+      "net": "41.88",
+      "tax": "8.38",
+      "gross": "50.26"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "5",
+      "actual": "6",
+      "message": "Line 1: invoiced 6 but only 5 can be billed (received 5, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 105,
+    "purchase_order_id": 97,
+    "line_po_item_ids": [
+      396
+    ]
+  }
+}

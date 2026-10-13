@@ -1,0 +1,54 @@
+{
+  "id": "inv-0053",
+  "split": "test",
+  "template": "alpenpack_de",
+  "scenario": "clean_partial_delivery",
+  "group": "g-053",
+  "pdf": "invoices/inv-0053.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00011",
+    "invoice_date": "2026-03-11",
+    "currency": "EUR",
+    "po_number": "PO-000053",
+    "lines": [
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "10",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "8.60"
+      },
+      {
+        "description": "Brotbeutel Papier, 1000 Stück",
+        "quantity": "30",
+        "unit_price": "18.26",
+        "tax_rate": "7",
+        "net_amount": "547.80"
+      },
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "10",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "142.00"
+      }
+    ],
+    "totals": {
+      "net": "698.40",
+      "tax": "66.96",
+      "gross": "765.36"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 53,
+    "purchase_order_id": 53,
+    "line_po_item_ids": [
+      274,
+      275,
+      276
+    ]
+  }
+}

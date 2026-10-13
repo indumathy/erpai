@@ -1,0 +1,51 @@
+{
+  "id": "inv-0078",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "partial_series_overbilling",
+  "group": "g-074",
+  "pdf": "invoices/inv-0078.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0017",
+    "invoice_date": "2026-08-06",
+    "currency": "EUR",
+    "po_number": "PO-000074",
+    "lines": [
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "3",
+        "unit_price": "148",
+        "tax_rate": "19",
+        "net_amount": "444.00"
+      }
+    ],
+    "totals": {
+      "net": "444.00",
+      "tax": "84.36",
+      "gross": "528.36"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "0",
+      "actual": "3",
+      "message": "Line 1: invoiced 3 but only 0 can be billed (received 200, already invoiced 200)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 78,
+    "purchase_order_id": 74,
+    "line_po_item_ids": [
+      328
+    ]
+  }
+}

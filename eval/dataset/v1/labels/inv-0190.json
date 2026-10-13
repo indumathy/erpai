@@ -1,0 +1,86 @@
+{
+  "id": "inv-0190",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "freight_and_price",
+  "group": "g-173",
+  "pdf": "invoices/inv-0190.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0037",
+    "invoice_date": "2026-03-15",
+    "currency": "EUR",
+    "po_number": "PO-000160",
+    "lines": [
+      {
+        "description": "Reinigungstücher, 100 Stk.",
+        "quantity": "250",
+        "unit_price": "6.36",
+        "tax_rate": "19",
+        "net_amount": "1590.00"
+      },
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "20",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "142.40"
+      },
+      {
+        "description": "Handscanner Barcode",
+        "quantity": "250",
+        "unit_price": "89.65",
+        "tax_rate": "19",
+        "net_amount": "22412.50"
+      },
+      {
+        "description": "Freight / Fracht",
+        "quantity": "1",
+        "unit_price": "120",
+        "tax_rate": "19",
+        "net_amount": "120.00"
+      }
+    ],
+    "totals": {
+      "net": "24264.90",
+      "tax": "4610.33",
+      "gross": "28875.23"
+    }
+  },
+  "intent": [
+    {
+      "code": "PRICE_MISMATCH",
+      "line": 3
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "line": 4
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "PRICE_MISMATCH",
+      "lineNumber": 3,
+      "expected": "96.4",
+      "actual": "89.65",
+      "message": "Line 3: unit price 89.65 differs from PO price 96.4 by more than 0.5 %"
+    },
+    {
+      "code": "UNMATCHED_LINE",
+      "lineNumber": 4,
+      "expected": null,
+      "actual": null,
+      "message": "Line 4 (Freight / Fracht) is not linked to a purchase order line"
+    }
+  ],
+  "erp": {
+    "invoice_id": 190,
+    "purchase_order_id": 160,
+    "line_po_item_ids": [
+      589,
+      590,
+      591,
+      null
+    ]
+  }
+}

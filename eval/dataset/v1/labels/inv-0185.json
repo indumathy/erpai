@@ -1,0 +1,86 @@
+{
+  "id": "inv-0185",
+  "split": "dev",
+  "template": "alpenpack_de",
+  "scenario": "missing_po_duplicate",
+  "group": "g-170",
+  "pdf": "invoices/inv-0185.pdf",
+  "fields": {
+    "supplier_name": "Alpenpack Verpackungen GmbH",
+    "invoice_number": "AP-R-00038",
+    "invoice_date": "2026-03-04",
+    "currency": "EUR",
+    "po_number": null,
+    "lines": [
+      {
+        "description": "Europalette 1200x800 mm",
+        "quantity": "8",
+        "unit_price": "14.2",
+        "tax_rate": "19",
+        "net_amount": "113.60"
+      },
+      {
+        "description": "Faltkarton 400x300x200 mm",
+        "quantity": "50",
+        "unit_price": "0.86",
+        "tax_rate": "19",
+        "net_amount": "43.00"
+      },
+      {
+        "description": "Stretchfolie 23 my, 300 m",
+        "quantity": "60",
+        "unit_price": "9.64",
+        "tax_rate": "19",
+        "net_amount": "578.40"
+      },
+      {
+        "description": "Lebensmittelbox 1 l, 50 Stück",
+        "quantity": "12",
+        "unit_price": "7.48",
+        "tax_rate": "7",
+        "net_amount": "89.76"
+      }
+    ],
+    "totals": {
+      "net": "824.76",
+      "tax": "145.93",
+      "gross": "970.69"
+    }
+  },
+  "intent": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "line": null
+    },
+    {
+      "code": "MISSING_PO",
+      "line": null
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "DUPLICATE_INVOICE",
+      "lineNumber": null,
+      "expected": null,
+      "actual": "186",
+      "message": "Invoice number AP-R-00038 was already used by this supplier (invoice id 186)"
+    },
+    {
+      "code": "MISSING_PO",
+      "lineNumber": null,
+      "expected": null,
+      "actual": null,
+      "message": "Invoice AP-R-00038 does not reference a purchase order"
+    }
+  ],
+  "erp": {
+    "invoice_id": 185,
+    "purchase_order_id": null,
+    "line_po_item_ids": [
+      null,
+      null,
+      null,
+      null
+    ]
+  }
+}

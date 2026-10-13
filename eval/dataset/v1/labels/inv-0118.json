@@ -1,0 +1,59 @@
+{
+  "id": "inv-0118",
+  "split": "test",
+  "template": "techsource_uk",
+  "scenario": "tax_rate_wrong",
+  "group": "g-110",
+  "pdf": "invoices/inv-0118.pdf",
+  "fields": {
+    "supplier_name": "TechSource Ltd",
+    "invoice_number": "TS/26/00022",
+    "invoice_date": "2026-04-27",
+    "currency": "GBP",
+    "po_number": "PO-000110",
+    "lines": [
+      {
+        "description": "USB-C docking station",
+        "quantity": "24",
+        "unit_price": "112.5",
+        "tax_rate": "5",
+        "net_amount": "2700.00"
+      },
+      {
+        "description": "Headset with microphone",
+        "quantity": "40",
+        "unit_price": "39.98",
+        "tax_rate": "20",
+        "net_amount": "1599.20"
+      }
+    ],
+    "totals": {
+      "net": "4299.20",
+      "tax": "454.84",
+      "gross": "4754.04"
+    }
+  },
+  "intent": [
+    {
+      "code": "TAX_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "TAX_MISMATCH",
+      "lineNumber": 1,
+      "expected": "20",
+      "actual": "5",
+      "message": "Line 1: tax rate 5 % differs from PO tax rate 20 %"
+    }
+  ],
+  "erp": {
+    "invoice_id": 118,
+    "purchase_order_id": 110,
+    "line_po_item_ids": [
+      438,
+      439
+    ]
+  }
+}

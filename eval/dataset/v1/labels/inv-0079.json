@@ -1,0 +1,38 @@
+{
+  "id": "inv-0079",
+  "split": "test",
+  "template": "nordbuero_de",
+  "scenario": "partial_series_overbilling",
+  "group": "g-075",
+  "pdf": "invoices/inv-0079.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0015",
+    "invoice_date": "2026-06-05",
+    "currency": "EUR",
+    "po_number": "PO-000075",
+    "lines": [
+      {
+        "description": "Kugelschreiber blau, 10 Stück",
+        "quantity": "60",
+        "unit_price": "3.9",
+        "tax_rate": "19",
+        "net_amount": "234.00"
+      }
+    ],
+    "totals": {
+      "net": "234.00",
+      "tax": "44.46",
+      "gross": "278.46"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 79,
+    "purchase_order_id": 75,
+    "line_po_item_ids": [
+      329
+    ]
+  }
+}

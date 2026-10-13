@@ -1,0 +1,70 @@
+{
+  "id": "inv-0068",
+  "split": "test",
+  "template": "bilingual",
+  "scenario": "price_at_tolerance",
+  "group": "g-068",
+  "pdf": "invoices/inv-0068.pdf",
+  "fields": {
+    "supplier_name": "Hanse Logistik & Bedarf GmbH",
+    "invoice_number": "RE-2026-0014",
+    "invoice_date": "2026-05-19",
+    "currency": "EUR",
+    "po_number": "PO-000068",
+    "lines": [
+      {
+        "description": "Müllsäcke 120 l, 25 Stk.",
+        "quantity": "250",
+        "unit_price": "7.12",
+        "tax_rate": "19",
+        "net_amount": "1780.00"
+      },
+      {
+        "description": "Erste-Hilfe-Kasten DIN 13157",
+        "quantity": "100",
+        "unit_price": "32.6",
+        "tax_rate": "19",
+        "net_amount": "3260.00"
+      },
+      {
+        "description": "Lagerregal 2000x1000x500 mm",
+        "quantity": "8",
+        "unit_price": "148.74",
+        "tax_rate": "19",
+        "net_amount": "1189.92"
+      },
+      {
+        "description": "Sicherheitsschuhe S3, Gr. 42",
+        "quantity": "40",
+        "unit_price": "54.9",
+        "tax_rate": "19",
+        "net_amount": "2196.00"
+      },
+      {
+        "description": "Gabelhubwagen 2500 kg",
+        "quantity": "8",
+        "unit_price": "389",
+        "tax_rate": "19",
+        "net_amount": "3112.00"
+      }
+    ],
+    "totals": {
+      "net": "11537.92",
+      "tax": "2192.20",
+      "gross": "13730.12"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 68,
+    "purchase_order_id": 68,
+    "line_po_item_ids": [
+      312,
+      313,
+      314,
+      315,
+      316
+    ]
+  }
+}

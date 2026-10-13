@@ -1,0 +1,59 @@
+{
+  "id": "inv-0103",
+  "split": "dev",
+  "template": "nordbuero_de",
+  "scenario": "quantity_not_received",
+  "group": "g-095",
+  "pdf": "invoices/inv-0103.pdf",
+  "fields": {
+    "supplier_name": "Nordbüro GmbH",
+    "invoice_number": "NB-2026-0022",
+    "invoice_date": "2026-04-05",
+    "currency": "EUR",
+    "po_number": "PO-000095",
+    "lines": [
+      {
+        "description": "Notizheft A5 kariert",
+        "quantity": "100",
+        "unit_price": "1.24",
+        "tax_rate": "19",
+        "net_amount": "124.00"
+      },
+      {
+        "description": "Fachbuch Buchhaltung 2026",
+        "quantity": "20",
+        "unit_price": "39.9",
+        "tax_rate": "7",
+        "net_amount": "798.00"
+      }
+    ],
+    "totals": {
+      "net": "922.00",
+      "tax": "79.42",
+      "gross": "1001.42"
+    }
+  },
+  "intent": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "line": 1
+    }
+  ],
+  "expected_exceptions": [
+    {
+      "code": "QUANTITY_MISMATCH",
+      "lineNumber": 1,
+      "expected": "75",
+      "actual": "100",
+      "message": "Line 1: invoiced 100 but only 75 can be billed (received 75, already invoiced 0)"
+    }
+  ],
+  "erp": {
+    "invoice_id": 103,
+    "purchase_order_id": 95,
+    "line_po_item_ids": [
+      392,
+      393
+    ]
+  }
+}

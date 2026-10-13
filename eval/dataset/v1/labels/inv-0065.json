@@ -1,0 +1,38 @@
+{
+  "id": "inv-0065",
+  "split": "dev",
+  "template": "acme_us",
+  "scenario": "price_at_tolerance",
+  "group": "g-065",
+  "pdf": "invoices/inv-0065.pdf",
+  "fields": {
+    "supplier_name": "Acme Industrial Supply Inc.",
+    "invoice_number": "INV-000013",
+    "invoice_date": "2026-05-26",
+    "currency": "USD",
+    "po_number": "PO-000065",
+    "lines": [
+      {
+        "description": "Safety glasses, clear",
+        "quantity": "2",
+        "unit_price": "5.5919",
+        "tax_rate": "0",
+        "net_amount": "11.18"
+      }
+    ],
+    "totals": {
+      "net": "11.18",
+      "tax": "0.00",
+      "gross": "11.18"
+    }
+  },
+  "intent": [],
+  "expected_exceptions": [],
+  "erp": {
+    "invoice_id": 65,
+    "purchase_order_id": 65,
+    "line_po_item_ids": [
+      303
+    ]
+  }
+}
