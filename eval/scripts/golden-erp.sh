@@ -13,8 +13,8 @@ cd "$(dirname "$0")/../.."         # repo root (this file lives in eval/scripts/
 # Connection settings; each can be overridden from outside (VAR=value bash eval/scripts/golden-erp.sh).
 DB_HOST="${GOLDEN_DB_HOST:-localhost}"
 DB_PORT="${GOLDEN_DB_PORT:-5432}"
-DB_USER="${GOLDEN_DB_USER:-test}"
-DB_PASSWORD="${GOLDEN_DB_PASSWORD:-test}"
+DB_USER="${GOLDEN_DB_USER:-vacos}"
+DB_PASSWORD="${GOLDEN_DB_PASSWORD:-vacos}"
 DB_NAME=erpai_golden
 # psql from PATH if available, otherwise the local PostgreSQL 16 install.
 PSQL="${GOLDEN_PSQL:-$(command -v psql || echo "/c/Program Files/PostgreSQL/16/bin/psql.exe")}"
