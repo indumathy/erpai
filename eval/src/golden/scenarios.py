@@ -14,6 +14,7 @@ from datetime import date, timedelta
 from decimal import ROUND_FLOOR, ROUND_HALF_UP, Decimal
 
 from golden.model import Intent, InvLine, InvoiceSpec, PoLine, Receipt, ScenarioSpec, Supplier
+from golden.suppliers import SUPPLIERS, TEMPLATE_KEYS
 
 # Date window of the whole dataset (fixed -> reproducible).
 FIRST_ORDER_DATE = date(2026, 1, 5)
@@ -304,3 +305,52 @@ def partial_series_overbilling(ctx: Ctx) -> ScenarioSpec:
     )
     spec = replace(spec, invoices=invoices)
     return named(add_intent(spec, Intent("QUANTITY_MISMATCH", 1), invoice=2), "partial_series_overbilling")
+
+
+# ---- catalog --------------------------------------------------------------------------------
+
+# CATALOG: (scenario function, number of stories). Functions are values in Python (Kotlin: ::cleanFull).
+# Invoice counts: clean 80, single exception 96, combinations 24 -> 200 invoices from 183 stories.
+RECIPE: tuple[tuple[Callable[[Ctx], ScenarioSpec], int], ...] = (
+    # clean (80 invoices)
+    (clean_full, 50),
+    (clean_partial_delivery, 10),
+    (price_at_tolerance, 12),
+    (partial_series_overbilling, 4),  # 3 invoices each: 2 clean + 1 QUANTITY_MISMATCH
+    # single exception (96 invoices)
+    (price_above_tolerance, 18),
+    (quantity_not_received, 14),
+    (tax_rate_wrong, 14),
+    (unmatched_freight, 14),
+    (duplicate_pair, 6),  # 2 invoices each
+    (currency_mismatch, 10),
+    (missing_po, 10),
+    # combinations (24 invoices)
+    (price_and_tax, 6),
+    (missing_po_duplicate, 3),  # 2 invoices each
+    (freight_and_price, 6),
+    (currency_and_quantity, 6),
+)
+
+
+# CATALOG: turns RECIPE into the ordered list of all stories for one seed.
+def build_catalog(seed: int) -> list[ScenarioSpec]:
+    """All scenario instances in generation order. Templates rotate so every scenario covers them all."""
+    counters = {key: 0 for key in TEMPLATE_KEYS}  # running invoice number per supplier
+    specs: list[ScenarioSpec] = []
+    for r, (scenario, count) in enumerate(RECIPE):
+        for i in range(count):
+            # rotate over the 5 suppliers; "+ r" shifts the start so small scenarios also vary
+            supplier = SUPPLIERS[TEMPLATE_KEYS[(i + r) % len(TEMPLATE_KEYS)]]
+
+            # fresh invoice number in the supplier's own format, e.g. NB-2026-0007.
+            # `s: Supplier = supplier` freezes the CURRENT supplier into the function (a Python closure
+            # would otherwise see the loop variable's LAST value).
+            def next_number(s: Supplier = supplier) -> str:
+                counters[s.key] += 1
+                return s.invoice_format.format(counters[s.key])
+
+            # One generator per instance, seeded by name: changing one scenario does not reshuffle the others.
+            rng = random.Random(f"{seed}:{scenario.__name__}:{i}")
+            specs.append(scenario(Ctx(rng, supplier, next_number)))
+    return specs
