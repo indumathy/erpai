@@ -44,6 +44,19 @@ def test_request_body_sends_decimals_and_dates_as_exact_strings():
     }
 
 
+# TEST: trailing zeros are dropped before sending — 4.18 x 1.005 = Decimal("4.20090") has scale 5,
+# and the ERP's @Digits(fraction = 4) would reject "4.20090" although the value has only 4 decimals.
+def test_request_decimals_are_sent_without_trailing_zeros():
+    seen = {}
+
+    def handler(request):
+        seen["body"] = json.loads(request.content)
+        return httpx.Response(201, text='{"id": 5}')
+
+    client_with(handler).create_invoice({"items": [{"unitPrice": Decimal("4.18") * Decimal("1.005"), "quantity": Decimal("100")}]})
+    assert seen["body"]["items"][0] == {"unitPrice": "4.2009", "quantity": "100"}
+
+
 def test_error_response_raises_with_status_and_body():
     # A 4xx/5xx must fail loudly with method, path, status and the ERP's error text.
     def handler(request):

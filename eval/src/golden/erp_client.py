@@ -11,6 +11,8 @@ from typing import Any  # Any = "any type" (Kotlin: Any?)
 
 import httpx  # HTTP client library (Kotlin/Spring: RestClient / WebClient)
 
+from golden.money import plain
+
 
 # An exception class with only a docstring: no body needed (Kotlin: class ErpError(msg: String) : RuntimeException(msg)).
 class ErpError(RuntimeError):
@@ -21,7 +23,10 @@ def _jsonable(value: Any) -> Any:
     """Decimals and dates as strings: exact on the wire (Jackson reads "4.2009" into a BigDecimal)."""
     # isinstance = Kotlin `is`. Walks nested dicts/lists recursively and converts the leaves.
     if isinstance(value, Decimal):
-        return format(value, "f")  # plain notation, never "1E+1"
+        # shortest exact form: "4.20090" -> "4.2009", "100" stays "100" (never "1E+2").
+        # Decimal keeps trailing zeros from multiplication (4.18 x 1.005 = 4.20090, scale 5),
+        # and the ERP's @Digits(fraction = 4) counts them.
+        return plain(value)
     if isinstance(value, date):
         return value.isoformat()  # date(2026, 3, 1) -> "2026-03-01"
     if isinstance(value, dict):
